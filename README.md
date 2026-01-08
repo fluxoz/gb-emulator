@@ -108,7 +108,10 @@ If you encounter "Failed to create window" errors, the emulator will provide det
 **Common scenarios:**
 
 1. **Wayland Desktop Environment:**
-   - Ensure XWayland is installed: `sudo apt install xwayland`
+   - Ensure XWayland is installed:
+     - Debian/Ubuntu: `sudo apt install xwayland`
+     - Fedora/RHEL: `sudo dnf install xorg-x11-server-Xwayland`
+     - Arch: `sudo pacman -S xorg-server-xwayland`
    - Find your X display: `ps aux | grep X` (look for display number like `:0` or `:1`)
    - Verify DISPLAY is set: `echo $DISPLAY`
    - If not set, try: `export DISPLAY=:0` (or use the display number from ps command)
@@ -121,7 +124,10 @@ If you encounter "Failed to create window" errors, the emulator will provide det
    - Check X server is running: Try running `xterm` or `xeyes`
    - Fix permissions (secure): `xhost +SI:localuser:$(whoami)`
    - Fix permissions (less secure): `xhost +local:` (grants access to all local users)
-   - Install X11 libraries: `sudo apt install libx11-dev libxrandr-dev`
+   - Install X11 libraries:
+     - Debian/Ubuntu: `sudo apt install libx11-dev libxrandr-dev`
+     - Fedora/RHEL: `sudo dnf install libX11-devel libXrandr-devel`
+     - Arch: `sudo pacman -S libx11 libxrandr`
 
 The error messages will automatically detect your environment and provide relevant solutions.
 

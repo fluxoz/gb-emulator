@@ -52,7 +52,10 @@ pub fn run_gui(mut cpu: CPU) {
         
         if xdg_session_type.as_deref() == Some("wayland") || wayland_display.is_some() {
             eprintln!("  1. You're running on Wayland. The emulator needs X11 or XWayland support.");
-            eprintln!("     - Ensure XWayland is installed: sudo apt install xwayland (Debian/Ubuntu)");
+            eprintln!("     - Ensure XWayland is installed:");
+            eprintln!("       * Debian/Ubuntu: sudo apt install xwayland");
+            eprintln!("       * Fedora/RHEL: sudo dnf install xorg-x11-server-Xwayland");
+            eprintln!("       * Arch: sudo pacman -S xorg-server-xwayland");
             eprintln!("     - Check if XWayland is running and find DISPLAY: ps aux | grep X");
             eprintln!("     - Try setting DISPLAY (e.g., export DISPLAY=:0 or :1, check with 'ps aux | grep X')");
             if display_var.is_none() {
@@ -69,7 +72,10 @@ pub fn run_gui(mut cpu: CPU) {
             eprintln!("     - X server is not running or not accessible");
             eprintln!("     - Permission issues: Try 'xhost +SI:localuser:$(whoami)' (more secure)");
             eprintln!("        or 'xhost +local:' (less secure, grants access to all local users)");
-            eprintln!("     - X11 libraries missing: sudo apt install libx11-dev libxrandr-dev");
+            eprintln!("     - X11 libraries missing. Install X11 development libraries:");
+            eprintln!("       * Debian/Ubuntu: sudo apt install libx11-dev libxrandr-dev");
+            eprintln!("       * Fedora/RHEL: sudo dnf install libX11-devel libXrandr-devel");
+            eprintln!("       * Arch: sudo pacman -S libx11 libxrandr");
             eprintln!("     - Display server crashed or isn't responding");
         }
         
