@@ -1,4 +1,4 @@
-use crate::{FlagsRegister, flags::FlagOps};
+use crate::flags::FlagOps;
 use serde::Deserialize;
 use std::error::Error;
 
@@ -16,15 +16,15 @@ pub struct OpCodeRaw {
 
 #[derive(Clone, Debug)]
 pub struct OpCode {
-    prefixed: bool,
-    mnemonic: String,
-    length: u8,
-    cycles: (Option<u8>, Option<u8>),
-    flags: [FlagOps; 4],
-    addr: u16,
-    group: String,
-    operand1: Option<String>,
-    operand2: Option<String>
+    pub prefixed: bool,
+    pub mnemonic: String,
+    pub length: u8,
+    pub cycles: (Option<u8>, Option<u8>),
+    pub flags: [FlagOps; 4],
+    pub addr: u16,
+    pub group: String,
+    pub operand1: Option<String>,
+    pub operand2: Option<String>
 }
 
 fn parse_hex_string_u16(s: &str) -> Result<u16, Box<dyn Error>> {
