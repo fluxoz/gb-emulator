@@ -1,11 +1,14 @@
 # Game Boy Emulator (Rust Implementation)
 
-A cycle-accurate Game Boy emulator implemented in Rust, focusing on precise CPU emulation with the CPU module as the hot path.
+A cycle-accurate Game Boy emulator implemented in Rust with full window-based display and input support.
 
 ## Features
 
 - ✅ **Complete CPU Implementation**: All 256 unprefixed and 256 CB-prefixed Sharp LR35902 instructions
 - ✅ **Cycle-Accurate Timing**: Precise cycle counting matching original Game Boy hardware (4.194304 MHz)
+- ✅ **Window-Based Display**: Real-time graphics rendering with minifb at 60 FPS
+- ✅ **Full Input Support**: Keyboard controls for all Game Boy buttons
+- ✅ **ROM Loading**: Load and run Game Boy ROM files from command line
 - ✅ **Memory Management Unit**: Complete memory map implementation with proper address decoding
 - ✅ **Hot Path Architecture**: CPU instruction stepping is the main execution path
 - ✅ **Comprehensive Testing**: 42 unit tests covering instruction execution and timing
@@ -56,7 +59,7 @@ The clock module (`src/clock.rs`) tracks CPU cycles with nanosecond precision:
 ### Prerequisites
 
 - Rust 2024 edition or later
-- No external dependencies except `serde` and `serde_json` (already in project)
+- Dependencies: `minifb`, `serde`, and `serde_json` (automatically managed by Cargo)
 
 ### Build
 
@@ -64,13 +67,28 @@ The clock module (`src/clock.rs`) tracks CPU cycles with nanosecond precision:
 cargo build --release
 ```
 
-### Run Demo
+### Running the Emulator
 
+Run with the boot ROM (256 bytes):
 ```bash
 cargo run
 ```
 
-The demo program executes a test ROM showing various instruction types with cycle-accurate timing.
+Run with a Game Boy ROM file:
+```bash
+cargo run -- path/to/game.gb
+```
+
+The emulator will open a window displaying the Game Boy screen at 4x scale, running at 60 FPS.
+
+### Controls
+
+- **Arrow Keys / WASD** - D-Pad
+- **Z / J** - A Button
+- **X / K** - B Button
+- **Enter / I** - Start
+- **Backspace / U** - Select
+- **ESC** - Quit
 
 ### Run Tests
 
@@ -128,36 +146,37 @@ Each instruction executes with cycle-accurate timing:
 
 ```
 src/
-├── main.rs         - Demo program and module declarations
+├── main.rs         - Main emulator loop with window and input handling
 ├── cpu.rs          - CPU implementation (hot path)
 ├── memory.rs       - Memory management unit
 ├── clock.rs        - Clock and timing system
 ├── flags.rs        - Flags register implementation
+├── gpu.rs          - GPU/PPU for graphics rendering
+├── input.rs        - Input handling for Game Boy controls
 ├── opcodes/        - Opcode definitions
 │   ├── mod.rs      - Opcode loader
 │   ├── unprefixed.json
 │   └── cbprefixed.json
-├── tests.rs        - Unit tests
-└── gpu.rs          - GPU skeleton (future implementation)
+└── tests.rs        - Unit tests
 ```
 
 ## Design Philosophy
 
 1. **CPU as Hot Path**: All instruction execution flows through the CPU module's `step()` method
 2. **Cycle Accuracy**: Every instruction tracks its exact cycle count to match original hardware
-3. **Minimal Dependencies**: Only stdlib plus serde/serde_json for opcode data
-4. **Clean Architecture**: Separation of concerns between CPU, memory, clock, and peripherals
-5. **No Reorganization**: Implementation built on existing project structure
+3. **Real-Time Emulation**: Window updates at 60 FPS matching Game Boy refresh rate
+4. **Clean Architecture**: Separation of concerns between CPU, memory, GPU, clock, and input
+5. **User-Friendly**: Simple command-line interface for loading ROMs
 
 ## Future Enhancements
 
 The current implementation provides a solid foundation for:
-- GPU/PPU implementation for graphics rendering
+- Enhanced GPU/PPU implementation for more accurate graphics rendering
 - Sound Processing Unit (APU) for audio
-- Joypad input handling
-- Interrupt handling system
+- More sophisticated interrupt handling
 - Save state functionality
 - Debugger interface
+- Game Boy Color support
 
 ## Performance
 
