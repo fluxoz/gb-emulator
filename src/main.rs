@@ -77,7 +77,15 @@ fn main() {
         },
     )
     .unwrap_or_else(|e| {
-        panic!("Unable to create window: {}", e);
+        eprintln!("Error: Unable to create window: {}", e);
+        eprintln!("\nThis emulator requires a graphical display environment to run.");
+        eprintln!("If you're running in a headless environment (CI, SSH without X11, etc.),");
+        eprintln!("you'll need to set up a virtual display or configure display permissions.\n");
+        eprintln!("Common solutions:");
+        eprintln!("  - Linux with Xvfb: xvfb-run cargo run");
+        eprintln!("  - SSH with X11 forwarding: ssh -X user@host (DISPLAY set automatically)");
+        eprintln!("  - Check display permissions: xhost +local:");
+        std::process::exit(1);
     });
     
     // Limit to 60 FPS (approximately Game Boy refresh rate)
