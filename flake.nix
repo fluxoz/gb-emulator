@@ -26,6 +26,14 @@
           rust
           rust-analyzer
           gdb
+          # Windowing dependencies for minifb
+          xorg.libX11
+          xorg.libXcursor
+          xorg.libXrandr
+          xorg.libXi
+          wayland
+          libxkbcommon
+          pkg-config
         ];
         shellHook = ''
           export SHELL=/run/current-system/sw/bin/bash
