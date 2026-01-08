@@ -98,6 +98,33 @@ cargo run -- path/to/game.gb
 
 The emulator will open a window displaying the Game Boy screen at 4x scale, running at 60 FPS. The GUI supports both Wayland and X11 on Linux out of the box.
 
+#### Running in Headless/CI Environments
+
+If you're running in a headless environment (GitHub Actions, SSH without X11, Docker, etc.), you'll need a virtual display:
+
+**Using Xvfb (X Virtual Framebuffer):**
+```bash
+# Install Xvfb (if not already installed)
+sudo apt-get install xvfb  # Debian/Ubuntu
+sudo yum install xorg-x11-server-Xvfb  # RHEL/CentOS
+
+# Run with Xvfb
+xvfb-run cargo run
+```
+
+**For GitHub Actions workflows:**
+```yaml
+- name: Run emulator
+  run: xvfb-run cargo run
+```
+
+**Alternative: Build without GUI for headless environments:**
+```bash
+cargo run --no-default-features
+```
+
+This will build and run the emulator without the GUI, which is useful for automated testing or environments where a display is not available.
+
 ### GUI and Feature Flags
 
 The GUI is implemented as an optional module that is enabled by default. This allows the emulator to be built for different environments:
@@ -142,6 +169,42 @@ All 42 tests should pass, covering:
 - Jump and branch instructions
 - CB-prefixed bit operations
 - Timing accuracy
+
+## Troubleshooting
+
+### "Unable to create window: Failed to create window"
+
+This error occurs when running in a headless environment without a display server. Solutions:
+
+1. **Use Xvfb** (recommended for CI/headless):
+   ```bash
+   xvfb-run cargo run
+   ```
+
+2. **Build without GUI**:
+   ```bash
+   cargo run --no-default-features
+   ```
+
+3. **SSH with X11 forwarding**:
+   ```bash
+   ssh -X user@host
+   cargo run
+   ```
+
+4. **Check DISPLAY variable**:
+   ```bash
+   echo $DISPLAY  # Should output something like :0 or :1
+   export DISPLAY=:0  # Set if needed
+   ```
+
+### Wayland vs X11 on Linux
+
+The emulator's GUI (minifb) supports both Wayland and X11 automatically. If you experience issues:
+
+- On Wayland systems, ensure `libwayland-dev` and `libwayland-cursor0` are installed
+- On X11 systems, ensure `libx11-dev` and related X11 libraries are installed
+- Use `echo $XDG_SESSION_TYPE` to check which display server you're using
 
 ## Implementation Details
 
