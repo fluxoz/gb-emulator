@@ -66,16 +66,10 @@ fn main() {
     // Run without GUI (for WASM or headless builds)
     #[cfg(not(feature = "gui"))]
     {
-        println!("\nGUI feature is disabled. Running in headless mode...");
+        println!("\nGUI feature is disabled. Build completed successfully!");
         println!("To enable GUI, build with: cargo build --features gui");
         println!("Or use default features: cargo build");
-        
-        // For headless mode, just run a few cycles as a demonstration
-        let mut cycles_count = 0;
-        for _ in 0..1000 {
-            cycles_count += cpu.step();
-        }
-        println!("Executed 1000 instructions ({} cycles)", cycles_count);
-        println!("Total CPU cycles: {}", cpu.get_ticks());
+        println!("\nThis headless build is suitable for WASM or other non-GUI environments.");
+        println!("Total CPU cycles initialized: {}", cpu.get_ticks());
     }
 }
