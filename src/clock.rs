@@ -25,6 +25,14 @@ impl Clock {
         // actual period is 238.41857910156, maybe 238 is precise enough?
         let dur = Duration::from_nanos(238); 
         sleep(dur);
-        self.ticks.wrapping_add(1);
+        self.ticks = self.ticks.wrapping_add(1);
+    }
+    
+    pub fn tick(&mut self, cycles: u8) {
+        self.ticks = self.ticks.wrapping_add(cycles as u128);
+    }
+    
+    pub fn get_ticks(&self) -> u128 {
+        self.ticks
     }
 }
