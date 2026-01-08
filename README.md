@@ -98,6 +98,31 @@ cargo run -- path/to/game.gb
 
 The emulator will open a window displaying the Game Boy screen at 4x scale, running at 60 FPS. The GUI supports both Wayland and X11 on Linux out of the box.
 
+### Troubleshooting Window Creation
+
+If you encounter "Failed to create window" errors, the emulator will provide detailed diagnostics including:
+- Your current display environment settings
+- Context-aware troubleshooting steps
+- Platform-specific solutions
+
+**Common scenarios:**
+
+1. **Wayland Desktop Environment:**
+   - Ensure XWayland is installed: `sudo apt install xwayland`
+   - Verify DISPLAY is set: `echo $DISPLAY` (should show something like `:0`)
+   - If DISPLAY is not set, try: `export DISPLAY=:0` before running
+
+2. **No Display Environment (Headless/CI):**
+   - Use virtual display: `xvfb-run cargo run`
+   - For SSH: Use X11 forwarding: `ssh -X user@host`
+
+3. **DISPLAY Set but Still Failing:**
+   - Check X server is running: Try running `xterm` or `xeyes`
+   - Fix permissions: `xhost +local:` or `xhost +SI:localuser:$(whoami)`
+   - Install X11 libraries: `sudo apt install libx11-dev libxrandr-dev`
+
+The error messages will automatically detect your environment and provide relevant solutions.
+
 ### GUI and Feature Flags
 
 The GUI is implemented as an optional module that is enabled by default. This allows the emulator to be built for different environments:
