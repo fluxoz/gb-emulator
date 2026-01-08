@@ -6,11 +6,12 @@ A cycle-accurate Game Boy emulator implemented in Rust with full window-based di
 
 - ✅ **Complete CPU Implementation**: All 256 unprefixed and 256 CB-prefixed Sharp LR35902 instructions
 - ✅ **Cycle-Accurate Timing**: Precise cycle counting matching original Game Boy hardware (4.194304 MHz)
-- ✅ **Window-Based Display**: Real-time graphics rendering with minifb at 60 FPS
+- ✅ **Cross-Platform GUI**: Real-time graphics rendering with minifb supporting Wayland and X11 out of the box
 - ✅ **Full Input Support**: Keyboard controls for all Game Boy buttons
 - ✅ **ROM Loading**: Load and run Game Boy ROM files from command line
 - ✅ **Memory Management Unit**: Complete memory map implementation with proper address decoding
 - ✅ **Hot Path Architecture**: CPU instruction stepping is the main execution path
+- ✅ **Feature Flags**: Optional GUI module for WASM and headless environments
 - ✅ **Comprehensive Testing**: 42 unit tests covering instruction execution and timing
 
 ## Architecture
@@ -59,17 +60,33 @@ The clock module (`src/clock.rs`) tracks CPU cycles with nanosecond precision:
 ### Prerequisites
 
 - Rust 2024 edition or later
-- Dependencies: `minifb`, `serde`, and `serde_json` (automatically managed by Cargo)
+- Dependencies: `minifb` (optional, enabled by default), `serde`, and `serde_json` (automatically managed by Cargo)
+- For Linux: The GUI supports both Wayland and X11 out of the box. On Wayland systems, you may need `libwayland-dev` and `libwayland-cursor0` packages installed.
 
 ### Build
 
+Build with GUI (default):
 ```bash
 cargo build --release
 ```
 
+Build without GUI (for WASM or headless environments):
+```bash
+cargo build --release --no-default-features
+```
+
+Build with explicit features:
+```bash
+# With GUI
+cargo build --release --features gui
+
+# Without GUI (same as --no-default-features for now)
+cargo build --release --no-default-features
+```
+
 ### Running the Emulator
 
-Run with the boot ROM (256 bytes):
+Run with the boot ROM (256 bytes) - GUI opens automatically:
 ```bash
 cargo run
 ```
@@ -79,7 +96,28 @@ Run with a Game Boy ROM file:
 cargo run -- path/to/game.gb
 ```
 
-The emulator will open a window displaying the Game Boy screen at 4x scale, running at 60 FPS.
+The emulator will open a window displaying the Game Boy screen at 4x scale, running at 60 FPS. The GUI supports both Wayland and X11 on Linux out of the box.
+
+### GUI and Feature Flags
+
+The GUI is implemented as an optional module that is enabled by default. This allows the emulator to be built for different environments:
+
+**Default behavior (GUI enabled):**
+```bash
+cargo run
+# or
+cargo run --features gui
+```
+
+**Headless mode (for WASM or other non-GUI environments):**
+```bash
+cargo run --no-default-features
+```
+
+The feature flag architecture makes it possible to:
+- Build for WASM without GUI dependencies
+- Create headless builds for automated testing
+- Reduce binary size when GUI is not needed
 
 ### Controls
 
@@ -146,7 +184,8 @@ Each instruction executes with cycle-accurate timing:
 
 ```
 src/
-├── main.rs         - Main emulator loop with window and input handling
+├── main.rs         - Main entry point with feature flag support
+├── gui.rs          - GUI module (optional, enabled by default)
 ├── cpu.rs          - CPU implementation (hot path)
 ├── memory.rs       - Memory management unit
 ├── clock.rs        - Clock and timing system
@@ -165,8 +204,10 @@ src/
 1. **CPU as Hot Path**: All instruction execution flows through the CPU module's `step()` method
 2. **Cycle Accuracy**: Every instruction tracks its exact cycle count to match original hardware
 3. **Real-Time Emulation**: Window updates at 60 FPS matching Game Boy refresh rate
-4. **Clean Architecture**: Separation of concerns between CPU, memory, GPU, clock, and input
-5. **User-Friendly**: Simple command-line interface for loading ROMs
+4. **Modular GUI**: GUI is feature-flagged for flexibility in different environments (native, WASM, headless)
+5. **Cross-Platform**: GUI supports Wayland and X11 on Linux out of the box
+6. **Clean Architecture**: Separation of concerns between CPU, memory, GPU, clock, input, and GUI
+7. **User-Friendly**: Simple command-line interface for loading ROMs
 
 ## Future Enhancements
 
