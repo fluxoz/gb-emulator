@@ -2,111 +2,93 @@ mod clock;
 mod cpu;
 mod flags;
 mod gpu;
-mod opcodes;
 mod memory;
-mod input;
+mod opcodes;
+mod tests;
 
 use cpu::CPU;
-use gpu::{GPU, SCREEN_WIDTH, SCREEN_HEIGHT};
-use memory::Memory;
-use minifb::{Key, Window, WindowOptions};
-use std::fs;
-use std::time::{Duration, Instant};
 
-const CYCLES_PER_FRAME: u64 = 70224; // ~59.7 Hz
-
-struct GameBoy {
-    cpu: CPU,
-    gpu: GPU,
-    memory: Memory,
-}
-
-impl GameBoy {
-    fn new(boot_rom: Vec<u8>, rom: Option<Vec<u8>>) -> Self {
-        Self {
-            cpu: CPU::new(),
-            gpu: GPU::new(),
-            memory: Memory::new(boot_rom, rom),
-        }
-    }
-
-    fn step(&mut self) {
-        let cycles = self.cpu.step(&mut self.memory);
-        self.gpu.step(cycles, &self.memory);
-    }
-
-    fn run_frame(&mut self) {
-        let start_cycles = self.cpu.cycles;
-        while self.cpu.cycles - start_cycles < CYCLES_PER_FRAME {
-            self.step();
-        }
-    }
-}
+// Demo configuration constants
+const MAX_DEMO_STEPS: usize = 20;
+const MIN_STEPS_BEFORE_HALT: usize = 15;
 
 fn main() {
-    println!("Game Boy Emulator Starting...");
-    println!("=================================");
-    println!("Controls:");
-    println!("  Arrow Keys / WASD - D-Pad");
-    println!("  Z / J             - A Button");
-    println!("  X / K             - B Button");
-    println!("  Enter / I         - Start");
-    println!("  Backspace / U     - Select");
-    println!("  ESC               - Exit");
-    println!("=================================");
-
-    // Load boot ROM
-    let boot_rom = fs::read("dmg_boot.bin").expect("Failed to read dmg_boot.bin");
-    println!("Loaded boot ROM: {} bytes", boot_rom.len());
-
-    // Create emulator
-    let mut gameboy = GameBoy::new(boot_rom, None);
-
-    // Create window
-    let mut window = Window::new(
-        "Game Boy Emulator - Press ESC to exit",
-        SCREEN_WIDTH,
-        SCREEN_HEIGHT,
-        WindowOptions {
-            resize: false,
-            scale: minifb::Scale::X4,
-            ..WindowOptions::default()
-        },
-    )
-    .expect("Failed to create window");
-
-    // Limit to ~60 fps
-    window.set_target_fps(60);
-
-    println!("Running emulator...");
-
-    let mut last_time = Instant::now();
-    let mut frame_count = 0;
-
-    // Main loop
-    while window.is_open() && !window.is_key_down(Key::Escape) {
-        // Update input
-        let keys = window.get_keys();
-        gameboy.memory.input.update_from_keys(&keys);
-
-        // Run one frame worth of cycles
-        gameboy.run_frame();
-
-        // Update window
-        window
-            .update_with_buffer(&gameboy.gpu.framebuffer, SCREEN_WIDTH, SCREEN_HEIGHT)
-            .expect("Failed to update window");
-
-        // FPS counter
-        frame_count += 1;
-        let elapsed = last_time.elapsed();
-        if elapsed >= Duration::from_secs(1) {
-            println!("FPS: {} | PC: 0x{:04X} | Cycles: {}", 
-                frame_count, gameboy.cpu.PC, gameboy.cpu.cycles);
-            frame_count = 0;
-            last_time = Instant::now();
+    println!("Game Boy Emulator - CPU Implementation Demo");
+    println!("============================================\n");
+    
+    // Create a CPU instance
+    let mut cpu = CPU::new();
+    
+    // Create a test ROM demonstrating various instruction types
+    let mut test_rom = vec![0; 0x100]; // Header area
+    test_rom.extend_from_slice(&[
+        // Demonstrate 8-bit loads
+        0x3E, 0x42,       // LD A, $42
+        0x06, 0x10,       // LD B, $10
+        0x0E, 0x20,       // LD C, $20
+        
+        // Demonstrate arithmetic
+        0x80,             // ADD A, B (A = $42 + $10 = $52)
+        0x91,             // SUB C (A = $52 - $20 = $32)
+        
+        // Demonstrate 16-bit operations
+        0x01, 0x34, 0x12, // LD BC, $1234
+        0x21, 0x00, 0xC0, // LD HL, $C000
+        
+        // Demonstrate increment/decrement
+        0x04,             // INC B
+        0x0D,             // DEC C
+        
+        // Demonstrate jump
+        0x18, 0x02,       // JR +2 (skip next 2 bytes)
+        0x00, 0x00,       // NOPs (skipped)
+        
+        // Demonstrate stack operations
+        0xC5,             // PUSH BC
+        0xC1,             // POP BC
+        
+        // Demonstrate CB prefix (bit operations)
+        0xCB, 0x47,       // BIT 0, A
+        
+        0x76,             // HALT
+    ]);
+    
+    cpu.load_rom(test_rom);
+    
+    println!("Executing test program...\n");
+    println!("PC       Cycles  Total Ticks  Instruction Type");
+    println!("------------------------------------------------");
+    
+    let mut step = 0;
+    loop {
+        let pc = cpu.get_pc();
+        let cycles = cpu.step();
+        let total = cpu.get_ticks();
+        
+        step += 1;
+        
+        // Determine instruction type from cycles (rough approximation)
+        let instr_type = match cycles {
+            4 => "Single byte op",
+            8 => "8-bit load/ALU",
+            12 => "16-bit load",
+            16 => "Stack/CB prefix",
+            _ => "Complex op",
+        };
+        
+        println!("0x{:04X}   {:2}      {:5}        {}", pc, cycles, total, instr_type);
+        
+        if step > MAX_DEMO_STEPS || (cycles == 4 && step > MIN_STEPS_BEFORE_HALT) {
+            // Stop after HALT or reasonable number of steps
+            break;
         }
     }
-
-    println!("Emulator stopped.");
+    
+    println!("\n============================================");
+    println!("Execution complete!");
+    println!("Total CPU cycles: {}", cpu.get_ticks());
+    println!("Final PC: 0x{:04X}", cpu.get_pc());
+    println!("\nThe CPU module is the hot path - all instruction");
+    println!("execution happens in the step() method with precise");
+    println!("cycle-accurate timing matching the original hardware.");
 }
