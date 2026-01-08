@@ -4,6 +4,7 @@ mod flags;
 mod gpu;
 mod opcodes;
 mod memory;
+mod input;
 
 use cpu::CPU;
 use gpu::{GPU, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -44,6 +45,15 @@ impl GameBoy {
 
 fn main() {
     println!("Game Boy Emulator Starting...");
+    println!("=================================");
+    println!("Controls:");
+    println!("  Arrow Keys / WASD - D-Pad");
+    println!("  Z / J             - A Button");
+    println!("  X / K             - B Button");
+    println!("  Enter / I         - Start");
+    println!("  Backspace / U     - Select");
+    println!("  ESC               - Exit");
+    println!("=================================");
 
     // Load boot ROM
     let boot_rom = fs::read("dmg_boot.bin").expect("Failed to read dmg_boot.bin");
@@ -54,7 +64,7 @@ fn main() {
 
     // Create window
     let mut window = Window::new(
-        "Game Boy Emulator",
+        "Game Boy Emulator - Press ESC to exit",
         SCREEN_WIDTH,
         SCREEN_HEIGHT,
         WindowOptions {
@@ -69,13 +79,16 @@ fn main() {
     window.set_target_fps(60);
 
     println!("Running emulator...");
-    println!("Press ESC to exit");
 
     let mut last_time = Instant::now();
     let mut frame_count = 0;
 
     // Main loop
     while window.is_open() && !window.is_key_down(Key::Escape) {
+        // Update input
+        let keys = window.get_keys();
+        gameboy.memory.input.update_from_keys(&keys);
+
         // Run one frame worth of cycles
         gameboy.run_frame();
 
@@ -88,7 +101,8 @@ fn main() {
         frame_count += 1;
         let elapsed = last_time.elapsed();
         if elapsed >= Duration::from_secs(1) {
-            println!("FPS: {}", frame_count);
+            println!("FPS: {} | PC: 0x{:04X} | Cycles: {}", 
+                frame_count, gameboy.cpu.PC, gameboy.cpu.cycles);
             frame_count = 0;
             last_time = Instant::now();
         }
