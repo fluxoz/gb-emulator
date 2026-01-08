@@ -58,7 +58,7 @@ impl GPU {
         }
 
         // Read LCD control register
-        let lcdc = memory.read_byte(0xFF40);
+        let lcdc = memory.read(0xFF40);
         let bg_enabled = (lcdc & 0x01) != 0;
         
         if !bg_enabled {
@@ -66,8 +66,8 @@ impl GPU {
         }
 
         // Get scroll positions
-        let scy = memory.read_byte(0xFF42);
-        let scx = memory.read_byte(0xFF43);
+        let scy = memory.read(0xFF42);
+        let scx = memory.read(0xFF43);
 
         // Determine tile map and tile data addresses
         let bg_map = if (lcdc & 0x08) != 0 { 0x9C00 } else { 0x9800 };
@@ -87,7 +87,7 @@ impl GPU {
 
                 // Get tile number from background map
                 let tile_addr = bg_map + (tile_row as u16 % 32) * 32 + (tile_col as u16 % 32);
-                let tile_num = memory.read_vram(tile_addr);
+                let tile_num = memory.read(tile_addr);
 
                 // Calculate tile data address
                 let tile_data_addr = if use_signed {
@@ -98,8 +98,8 @@ impl GPU {
                 };
 
                 // Each tile is 16 bytes, 2 bytes per row
-                let byte1 = memory.read_vram(tile_data_addr + (tile_y as u16 * 2));
-                let byte2 = memory.read_vram(tile_data_addr + (tile_y as u16 * 2) + 1);
+                let byte1 = memory.read(tile_data_addr + (tile_y as u16 * 2));
+                let byte2 = memory.read(tile_data_addr + (tile_y as u16 * 2) + 1);
 
                 // Get color for this pixel (bits are in reverse order)
                 let bit_pos = 7 - tile_x;
