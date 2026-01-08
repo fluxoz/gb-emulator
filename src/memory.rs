@@ -1,4 +1,8 @@
 // Memory Management Unit for Game Boy
+//
+// Implements the complete Game Boy memory map with accurate address decoding.
+// The MMU handles all memory read/write operations with proper banking and mirroring.
+//
 // Memory Map:
 // 0x0000-0x00FF: Boot ROM (can be disabled)
 // 0x0000-0x3FFF: ROM Bank 0
