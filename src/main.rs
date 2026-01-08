@@ -83,8 +83,8 @@ fn main() {
         eprintln!("you'll need to set up a virtual display or configure display permissions.\n");
         eprintln!("Common solutions:");
         eprintln!("  - Linux with Xvfb: xvfb-run cargo run");
-        eprintln!("  - SSH with X11: ssh -X user@host && export DISPLAY=:0");
-        eprintln!("  - Check display permissions: xhost + (or xhost +local:)");
+        eprintln!("  - SSH with X11 forwarding: ssh -X user@host (DISPLAY set automatically)");
+        eprintln!("  - Check display permissions: xhost +local:");
         std::process::exit(1);
     });
     
