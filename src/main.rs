@@ -2,118 +2,128 @@ mod clock;
 mod cpu;
 mod flags;
 mod gpu;
+mod input;
 mod memory;
 mod opcodes;
 mod tests;
 
 use cpu::CPU;
+use gpu::{GPU, SCREEN_WIDTH, SCREEN_HEIGHT};
+use input::Input;
+use minifb::{Window, WindowOptions, Key};
+use std::env;
 use std::fs;
 use std::path::Path;
-
-// Demo configuration constants
-const MAX_DEMO_STEPS: usize = 10000;
+use std::time::{Duration, Instant};
 
 fn main() {
-    println!("Game Boy Emulator - Boot ROM Demo");
-    println!("===================================\n");
+    println!("Game Boy Emulator");
+    println!("==================\n");
+    
+    // Parse command line arguments
+    let args: Vec<String> = env::args().collect();
+    let rom_path = if args.len() > 1 {
+        args[1].clone()
+    } else {
+        // Default to boot ROM if no argument provided
+        "dmg_boot.bin".to_string()
+    };
     
     // Create a CPU instance
     let mut cpu = CPU::new();
     
-    // Try to load boot ROM
-    let boot_rom_path = "dmg_boot.bin";
-    if Path::new(boot_rom_path).exists() {
-        match fs::read(boot_rom_path) {
-            Ok(boot_data) => {
-                println!("Loading boot ROM from {}...", boot_rom_path);
-                cpu.load_boot_rom(&boot_data);
-                println!("Boot ROM loaded successfully ({} bytes)\n", boot_data.len());
+    // Load ROM file
+    if Path::new(&rom_path).exists() {
+        match fs::read(&rom_path) {
+            Ok(rom_data) => {
+                println!("Loading ROM from {}...", rom_path);
+                
+                // Check if this is a boot ROM (256 bytes) or a game ROM
+                if rom_data.len() == 256 {
+                    cpu.load_boot_rom(&rom_data);
+                    println!("Boot ROM loaded successfully ({} bytes)", rom_data.len());
+                } else {
+                    cpu.load_rom(rom_data.clone());
+                    println!("Game ROM loaded successfully ({} bytes)", rom_data.len());
+                }
             }
             Err(e) => {
-                eprintln!("Error reading boot ROM: {}", e);
-                println!("Continuing without boot ROM\n");
+                eprintln!("Error reading ROM file {}: {}", rom_path, e);
+                eprintln!("Usage: cargo run -- <path_to_rom.gb>");
+                std::process::exit(1);
             }
         }
     } else {
-        println!("Boot ROM not found at {}", boot_rom_path);
-        println!("Continuing with test program\n");
-        
-        // Create a test ROM demonstrating various instruction types
-        let mut test_rom = vec![0; 0x100]; // Header area
-        test_rom.extend_from_slice(&[
-            // Demonstrate 8-bit loads
-            0x3E, 0x42,       // LD A, $42
-            0x06, 0x10,       // LD B, $10
-            0x0E, 0x20,       // LD C, $20
-            
-            // Demonstrate arithmetic
-            0x80,             // ADD A, B (A = $42 + $10 = $52)
-            0x91,             // SUB C (A = $52 - $20 = $32)
-            
-            // Demonstrate 16-bit operations
-            0x01, 0x34, 0x12, // LD BC, $1234
-            0x21, 0x00, 0xC0, // LD HL, $C000
-            
-            // Demonstrate increment/decrement
-            0x04,             // INC B
-            0x0D,             // DEC C
-            
-            // Demonstrate jump
-            0x18, 0x02,       // JR +2 (skip next 2 bytes)
-            0x00, 0x00,       // NOPs (skipped)
-            
-            // Demonstrate stack operations
-            0xC5,             // PUSH BC
-            0xC1,             // POP BC
-            
-            // Demonstrate CB prefix (bit operations)
-            0xCB, 0x47,       // BIT 0, A
-            
-            0x76,             // HALT
-        ]);
-        
-        cpu.load_rom(test_rom);
+        eprintln!("ROM file not found: {}", rom_path);
+        eprintln!("Usage: cargo run -- <path_to_rom.gb>");
+        std::process::exit(1);
     }
     
-    println!("Executing program...\n");
-    println!("PC       Cycles  Total Ticks  Instruction");
-    println!("-------------------------------------------");
+    // Create GPU
+    let mut gpu = GPU::new();
     
-    let mut step = 0;
-    loop {
-        let pc = cpu.get_pc();
-        let cycles = cpu.step();
-        let total = cpu.get_ticks();
+    // Create input handler
+    let mut input = Input::new();
+    
+    // Create window
+    let mut window = Window::new(
+        "Game Boy Emulator",
+        SCREEN_WIDTH,
+        SCREEN_HEIGHT,
+        WindowOptions {
+            resize: false,
+            scale: minifb::Scale::X4,
+            ..WindowOptions::default()
+        },
+    )
+    .unwrap_or_else(|e| {
+        panic!("Unable to create window: {}", e);
+    });
+    
+    // Limit to 60 FPS (approximately Game Boy refresh rate)
+    window.set_target_fps(60);
+    
+    println!("\nEmulator started!");
+    println!("Controls:");
+    println!("  Arrow Keys / WASD - D-Pad");
+    println!("  Z / J - A Button");
+    println!("  X / K - B Button");
+    println!("  Enter / I - Start");
+    println!("  Backspace / U - Select");
+    println!("  ESC - Quit\n");
+    
+    let mut last_frame_time = Instant::now();
+    let target_frame_time = Duration::from_micros(16666); // ~60 FPS
+    
+    // Main emulation loop
+    while window.is_open() && !window.is_key_down(Key::Escape) {
+        // Update input state
+        let keys = window.get_keys();
+        input.update_from_keys(&keys);
         
-        step += 1;
+        // Run CPU for one frame's worth of cycles
+        // Game Boy runs at ~4.194 MHz, at 60 FPS that's about 69905 cycles per frame
+        let target_cycles = 69905;
+        let start_cycles = cpu.get_ticks();
         
-        // Show first 20 and last few instructions
-        if step <= 20 || step > MAX_DEMO_STEPS - 5 {
-            // Determine instruction type from cycles (rough approximation)
-            let instr_type = match cycles {
-                4 => "Single byte/HALT",
-                8 => "8-bit load/ALU",
-                12 => "16-bit load/JP",
-                16 => "Stack/CB prefix",
-                _ => "Complex op",
-            };
-            
-            println!("0x{:04X}   {:2}      {:5}        {}", pc, cycles, total, instr_type);
-        } else if step == 21 {
-            println!("... (continuing execution) ...");
+        while cpu.get_ticks() - start_cycles < target_cycles {
+            let cycles = cpu.step();
+            gpu.step(cycles, cpu.get_memory());
         }
         
-        if step > MAX_DEMO_STEPS || (cycles == 4 && step > 10) {
-            // Stop after HALT or max steps
-            println!("\n[Execution stopped after {} steps]", step);
-            break;
+        // Update window with framebuffer
+        window
+            .update_with_buffer(&gpu.framebuffer, SCREEN_WIDTH, SCREEN_HEIGHT)
+            .unwrap();
+        
+        // Frame timing
+        let elapsed = last_frame_time.elapsed();
+        if elapsed < target_frame_time {
+            std::thread::sleep(target_frame_time - elapsed);
         }
+        last_frame_time = Instant::now();
     }
     
-    println!("\n===================================");
-    println!("Execution complete!");
+    println!("\nEmulator closed.");
     println!("Total CPU cycles: {}", cpu.get_ticks());
-    println!("Final PC: 0x{:04X}", cpu.get_pc());
-    println!("\nThe CPU executes with cycle-accurate timing");
-    println!("matching the original Game Boy hardware.");
 }
