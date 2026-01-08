@@ -4,6 +4,10 @@ use crate::input::Input;
 use minifb::{Window, WindowOptions, Key};
 use std::time::{Duration, Instant};
 
+// Constants for timing
+const TARGET_FRAME_TIME_MICROS: u64 = 16666; // ~60 FPS (1/60 second in microseconds)
+const CYCLES_PER_FRAME: u128 = 69905; // Game Boy runs at ~4.194 MHz, at 60 FPS that's about 69905 cycles per frame
+
 pub fn run_gui(mut cpu: CPU) {
     println!("\nEmulator started!");
     println!("Controls:");
@@ -47,7 +51,7 @@ pub fn run_gui(mut cpu: CPU) {
     window.set_target_fps(60);
     
     let mut last_frame_time = Instant::now();
-    let target_frame_time = Duration::from_micros(16666); // ~60 FPS
+    let target_frame_time = Duration::from_micros(TARGET_FRAME_TIME_MICROS);
     
     // Main emulation loop
     while window.is_open() && !window.is_key_down(Key::Escape) {
@@ -56,11 +60,9 @@ pub fn run_gui(mut cpu: CPU) {
         input.update_from_keys(&keys);
         
         // Run CPU for one frame's worth of cycles
-        // Game Boy runs at ~4.194 MHz, at 60 FPS that's about 69905 cycles per frame
-        let target_cycles = 69905;
         let start_cycles = cpu.get_ticks();
         
-        while cpu.get_ticks() - start_cycles < target_cycles {
+        while cpu.get_ticks() - start_cycles < CYCLES_PER_FRAME {
             let cycles = cpu.step();
             gpu.step(cycles, cpu.get_memory());
         }
