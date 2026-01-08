@@ -9,6 +9,7 @@
 // Bit 1 - P11 (Left or B)
 // Bit 0 - P10 (Right or A)
 
+#[cfg(feature = "gui")]
 use minifb::Key;
 
 #[derive(Default)]
@@ -30,6 +31,7 @@ impl Input {
         Self::default()
     }
 
+    #[cfg(feature = "gui")]
     pub fn update_from_keys(&mut self, keys: &[Key]) {
         self.right = keys.contains(&Key::Right) || keys.contains(&Key::D);
         self.left = keys.contains(&Key::Left) || keys.contains(&Key::A);
