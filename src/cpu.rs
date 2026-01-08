@@ -1,3 +1,27 @@
+// Game Boy CPU Implementation
+//
+// This module implements the Sharp LR35902 CPU used in the original Game Boy.
+// The CPU is the hot path of the emulator - all instruction execution happens here.
+//
+// Architecture:
+// - 8-bit CPU with 16-bit address bus
+// - 8-bit registers: A (accumulator), B, C, D, E, H, L, F (flags)
+// - 16-bit registers: SP (stack pointer), PC (program counter)
+// - Register pairs can be used as 16-bit: BC, DE, HL
+//
+// Timing:
+// The CPU runs at 4.194304 MHz with precise cycle counting for each instruction.
+// Each instruction's cycle count is accurately tracked to match original hardware timing.
+//
+// Instruction Execution Flow (Hot Path):
+// 1. Fetch opcode from memory at PC
+// 2. Decode opcode using match statement dispatch
+// 3. Execute instruction with precise cycle count
+// 4. Update CPU state (registers, flags, memory)
+// 5. Advance PC and track clock cycles
+//
+// All 256 unprefixed opcodes and 256 CB-prefixed opcodes are fully implemented.
+
 use crate::{
     flags::FlagsRegister,
     clock::Clock,
