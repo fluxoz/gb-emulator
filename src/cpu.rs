@@ -29,7 +29,6 @@ use crate::{
     opcodes::{load_opcodes, OpCode},
 };
 
-
 #[allow(non_snake_case)]
 pub struct CPU {
     // Registers
