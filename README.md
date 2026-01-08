@@ -122,8 +122,9 @@ If you encounter "Failed to create window" errors, the emulator will provide det
 
 3. **DISPLAY Set but Still Failing:**
    - Check X server is running: Try running `xterm` or `xeyes`
-   - Fix permissions (secure): `xhost +SI:localuser:$(whoami)`
-   - Fix permissions (less secure): `xhost +local:` (grants access to all local users)
+   - Fix permissions:
+     - Recommended (secure): `xhost +SI:localuser:$(whoami)`
+     - Alternative (less secure, all local users): `xhost +local:`
    - Install X11 libraries:
      - Debian/Ubuntu: `sudo apt install libx11-dev libxrandr-dev`
      - Fedora/RHEL: `sudo dnf install libX11-devel libXrandr-devel`
