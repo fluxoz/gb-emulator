@@ -3,10 +3,14 @@ name = "gb-emulator"
 version = "0.1.0"
 edition = "2024"
 
+[features]
+default = ["gui"]
+gui = ["minifb"]
+
 [dependencies]
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.148"
-minifb = "0.27"
+minifb = { version = "0.27", optional = true }
 
 [build-dependencies]
 serde = { version = "1.0.228", features = ["derive"] }
