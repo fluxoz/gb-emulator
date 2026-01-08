@@ -1498,4 +1498,8 @@ impl CPU {
     pub fn get_ticks(&self) -> u128 {
         self.clock.get_ticks()
     }
+    
+    pub fn get_memory(&self) -> &Memory {
+        &self.memory
+    }
 }
