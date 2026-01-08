@@ -53,8 +53,8 @@ pub fn run_gui(mut cpu: CPU) {
         if xdg_session_type.as_deref() == Some("wayland") || wayland_display.is_some() {
             eprintln!("  1. You're running on Wayland. The emulator needs X11 or XWayland support.");
             eprintln!("     - Ensure XWayland is installed: sudo apt install xwayland (Debian/Ubuntu)");
-            eprintln!("     - Try setting DISPLAY if XWayland is running: export DISPLAY=:0");
-            eprintln!("     - Or force X11 backend with: GDK_BACKEND=x11 cargo run");
+            eprintln!("     - Check if XWayland is running and find DISPLAY: ps aux | grep X");
+            eprintln!("     - Try setting DISPLAY (e.g., export DISPLAY=:0 or :1, check with 'ps aux | grep X')");
             if display_var.is_none() {
                 eprintln!("     - Note: DISPLAY variable is not set, which is needed for X11/XWayland");
             }
@@ -62,11 +62,13 @@ pub fn run_gui(mut cpu: CPU) {
             eprintln!("  1. No display environment detected. You may be running in a headless environment.");
             eprintln!("     - For headless/CI: Use a virtual display with: xvfb-run cargo run");
             eprintln!("     - For SSH: Enable X11 forwarding with: ssh -X user@host");
-            eprintln!("     - If you have a desktop environment, ensure DISPLAY is set: export DISPLAY=:0");
+            eprintln!("     - If you have a desktop environment, check your DISPLAY: run 'echo $DISPLAY'");
+            eprintln!("     - If DISPLAY is not set, try: export DISPLAY=:0 (or the value from your X server)");
         } else if display_var.is_some() {
             eprintln!("  1. DISPLAY is set but window creation failed. This could mean:");
             eprintln!("     - X server is not running or not accessible");
-            eprintln!("     - Permission issues: Try 'xhost +local:' or 'xhost +SI:localuser:$(whoami)'");
+            eprintln!("     - Permission issues: Try 'xhost +SI:localuser:$(whoami)' (more secure)");
+            eprintln!("        or 'xhost +local:' (less secure, grants access to all local users)");
             eprintln!("     - X11 libraries missing: sudo apt install libx11-dev libxrandr-dev");
             eprintln!("     - Display server crashed or isn't responding");
         }

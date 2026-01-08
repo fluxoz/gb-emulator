@@ -109,8 +109,9 @@ If you encounter "Failed to create window" errors, the emulator will provide det
 
 1. **Wayland Desktop Environment:**
    - Ensure XWayland is installed: `sudo apt install xwayland`
-   - Verify DISPLAY is set: `echo $DISPLAY` (should show something like `:0`)
-   - If DISPLAY is not set, try: `export DISPLAY=:0` before running
+   - Find your X display: `ps aux | grep X` (look for display number like `:0` or `:1`)
+   - Verify DISPLAY is set: `echo $DISPLAY`
+   - If not set, try: `export DISPLAY=:0` (or use the display number from ps command)
 
 2. **No Display Environment (Headless/CI):**
    - Use virtual display: `xvfb-run cargo run`
@@ -118,7 +119,8 @@ If you encounter "Failed to create window" errors, the emulator will provide det
 
 3. **DISPLAY Set but Still Failing:**
    - Check X server is running: Try running `xterm` or `xeyes`
-   - Fix permissions: `xhost +local:` or `xhost +SI:localuser:$(whoami)`
+   - Fix permissions (secure): `xhost +SI:localuser:$(whoami)`
+   - Fix permissions (less secure): `xhost +local:` (grants access to all local users)
    - Install X11 libraries: `sudo apt install libx11-dev libxrandr-dev`
 
 The error messages will automatically detect your environment and provide relevant solutions.
