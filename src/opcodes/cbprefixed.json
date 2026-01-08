@@ -1,0 +1,4290 @@
+[
+  {
+    "mnemonic": "RLC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x00",
+    "group": "x8/rsb",
+    "operand1": "B"
+  },
+  {
+    "mnemonic": "RLC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x01",
+    "group": "x8/rsb",
+    "operand1": "C"
+  },
+  {
+    "mnemonic": "RLC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x02",
+    "group": "x8/rsb",
+    "operand1": "D"
+  },
+  {
+    "mnemonic": "RLC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x03",
+    "group": "x8/rsb",
+    "operand1": "E"
+  },
+  {
+    "mnemonic": "RLC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x04",
+    "group": "x8/rsb",
+    "operand1": "H"
+  },
+  {
+    "mnemonic": "RLC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x05",
+    "group": "x8/rsb",
+    "operand1": "L"
+  },
+  {
+    "mnemonic": "RLC",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x06",
+    "group": "x8/rsb",
+    "operand1": "(HL)"
+  },
+  {
+    "mnemonic": "RLC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x07",
+    "group": "x8/rsb",
+    "operand1": "A"
+  },
+  {
+    "mnemonic": "RRC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x08",
+    "group": "x8/rsb",
+    "operand1": "B"
+  },
+  {
+    "mnemonic": "RRC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x09",
+    "group": "x8/rsb",
+    "operand1": "C"
+  },
+  {
+    "mnemonic": "RRC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x0a",
+    "group": "x8/rsb",
+    "operand1": "D"
+  },
+  {
+    "mnemonic": "RRC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x0b",
+    "group": "x8/rsb",
+    "operand1": "E"
+  },
+  {
+    "mnemonic": "RRC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x0c",
+    "group": "x8/rsb",
+    "operand1": "H"
+  },
+  {
+    "mnemonic": "RRC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x0d",
+    "group": "x8/rsb",
+    "operand1": "L"
+  },
+  {
+    "mnemonic": "RRC",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x0e",
+    "group": "x8/rsb",
+    "operand1": "(HL)"
+  },
+  {
+    "mnemonic": "RRC",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x0f",
+    "group": "x8/rsb",
+    "operand1": "A"
+  },
+  {
+    "mnemonic": "RL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x10",
+    "group": "x8/rsb",
+    "operand1": "B"
+  },
+  {
+    "mnemonic": "RL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x11",
+    "group": "x8/rsb",
+    "operand1": "C"
+  },
+  {
+    "mnemonic": "RL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x12",
+    "group": "x8/rsb",
+    "operand1": "D"
+  },
+  {
+    "mnemonic": "RL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x13",
+    "group": "x8/rsb",
+    "operand1": "E"
+  },
+  {
+    "mnemonic": "RL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x14",
+    "group": "x8/rsb",
+    "operand1": "H"
+  },
+  {
+    "mnemonic": "RL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x15",
+    "group": "x8/rsb",
+    "operand1": "L"
+  },
+  {
+    "mnemonic": "RL",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x16",
+    "group": "x8/rsb",
+    "operand1": "(HL)"
+  },
+  {
+    "mnemonic": "RL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x17",
+    "group": "x8/rsb",
+    "operand1": "A"
+  },
+  {
+    "mnemonic": "RR",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x18",
+    "group": "x8/rsb",
+    "operand1": "B"
+  },
+  {
+    "mnemonic": "RR",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x19",
+    "group": "x8/rsb",
+    "operand1": "C"
+  },
+  {
+    "mnemonic": "RR",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x1a",
+    "group": "x8/rsb",
+    "operand1": "D"
+  },
+  {
+    "mnemonic": "RR",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x1b",
+    "group": "x8/rsb",
+    "operand1": "E"
+  },
+  {
+    "mnemonic": "RR",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x1c",
+    "group": "x8/rsb",
+    "operand1": "H"
+  },
+  {
+    "mnemonic": "RR",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x1d",
+    "group": "x8/rsb",
+    "operand1": "L"
+  },
+  {
+    "mnemonic": "RR",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x1e",
+    "group": "x8/rsb",
+    "operand1": "(HL)"
+  },
+  {
+    "mnemonic": "RR",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x1f",
+    "group": "x8/rsb",
+    "operand1": "A"
+  },
+  {
+    "mnemonic": "SLA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x20",
+    "group": "x8/rsb",
+    "operand1": "B"
+  },
+  {
+    "mnemonic": "SLA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x21",
+    "group": "x8/rsb",
+    "operand1": "C"
+  },
+  {
+    "mnemonic": "SLA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x22",
+    "group": "x8/rsb",
+    "operand1": "D"
+  },
+  {
+    "mnemonic": "SLA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x23",
+    "group": "x8/rsb",
+    "operand1": "E"
+  },
+  {
+    "mnemonic": "SLA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x24",
+    "group": "x8/rsb",
+    "operand1": "H"
+  },
+  {
+    "mnemonic": "SLA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x25",
+    "group": "x8/rsb",
+    "operand1": "L"
+  },
+  {
+    "mnemonic": "SLA",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x26",
+    "group": "x8/rsb",
+    "operand1": "(HL)"
+  },
+  {
+    "mnemonic": "SLA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x27",
+    "group": "x8/rsb",
+    "operand1": "A"
+  },
+  {
+    "mnemonic": "SRA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x28",
+    "group": "x8/rsb",
+    "operand1": "B"
+  },
+  {
+    "mnemonic": "SRA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x29",
+    "group": "x8/rsb",
+    "operand1": "C"
+  },
+  {
+    "mnemonic": "SRA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x2a",
+    "group": "x8/rsb",
+    "operand1": "D"
+  },
+  {
+    "mnemonic": "SRA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x2b",
+    "group": "x8/rsb",
+    "operand1": "E"
+  },
+  {
+    "mnemonic": "SRA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x2c",
+    "group": "x8/rsb",
+    "operand1": "H"
+  },
+  {
+    "mnemonic": "SRA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x2d",
+    "group": "x8/rsb",
+    "operand1": "L"
+  },
+  {
+    "mnemonic": "SRA",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x2e",
+    "group": "x8/rsb",
+    "operand1": "(HL)"
+  },
+  {
+    "mnemonic": "SRA",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x2f",
+    "group": "x8/rsb",
+    "operand1": "A"
+  },
+  {
+    "mnemonic": "SWAP",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x30",
+    "group": "x8/rsb",
+    "operand1": "B"
+  },
+  {
+    "mnemonic": "SWAP",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x31",
+    "group": "x8/rsb",
+    "operand1": "C"
+  },
+  {
+    "mnemonic": "SWAP",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x32",
+    "group": "x8/rsb",
+    "operand1": "D"
+  },
+  {
+    "mnemonic": "SWAP",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x33",
+    "group": "x8/rsb",
+    "operand1": "E"
+  },
+  {
+    "mnemonic": "SWAP",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x34",
+    "group": "x8/rsb",
+    "operand1": "H"
+  },
+  {
+    "mnemonic": "SWAP",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x35",
+    "group": "x8/rsb",
+    "operand1": "L"
+  },
+  {
+    "mnemonic": "SWAP",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x36",
+    "group": "x8/rsb",
+    "operand1": "(HL)"
+  },
+  {
+    "mnemonic": "SWAP",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "0"
+    ],
+    "addr": "0x37",
+    "group": "x8/rsb",
+    "operand1": "A"
+  },
+  {
+    "mnemonic": "SRL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x38",
+    "group": "x8/rsb",
+    "operand1": "B"
+  },
+  {
+    "mnemonic": "SRL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x39",
+    "group": "x8/rsb",
+    "operand1": "C"
+  },
+  {
+    "mnemonic": "SRL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x3a",
+    "group": "x8/rsb",
+    "operand1": "D"
+  },
+  {
+    "mnemonic": "SRL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x3b",
+    "group": "x8/rsb",
+    "operand1": "E"
+  },
+  {
+    "mnemonic": "SRL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x3c",
+    "group": "x8/rsb",
+    "operand1": "H"
+  },
+  {
+    "mnemonic": "SRL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x3d",
+    "group": "x8/rsb",
+    "operand1": "L"
+  },
+  {
+    "mnemonic": "SRL",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x3e",
+    "group": "x8/rsb",
+    "operand1": "(HL)"
+  },
+  {
+    "mnemonic": "SRL",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "0",
+      "C"
+    ],
+    "addr": "0x3f",
+    "group": "x8/rsb",
+    "operand1": "A"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x40",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x41",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x42",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x43",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x44",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x45",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x46",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x47",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x48",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x49",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x4a",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x4b",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x4c",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x4d",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x4e",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x4f",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x50",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x51",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x52",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x53",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x54",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x55",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x56",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x57",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x58",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x59",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x5a",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x5b",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x5c",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x5d",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x5e",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x5f",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x60",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x61",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x62",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x63",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x64",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x65",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x66",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x67",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x68",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x69",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x6a",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x6b",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x6c",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x6d",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x6e",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x6f",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x70",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x71",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x72",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x73",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x74",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x75",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x76",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x77",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x78",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x79",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x7a",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x7b",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x7c",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x7d",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x7e",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "BIT",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "Z",
+      "0",
+      "1",
+      "-"
+    ],
+    "addr": "0x7f",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x80",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x81",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x82",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x83",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x84",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x85",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x86",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x87",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x88",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x89",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x8a",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x8b",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x8c",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x8d",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x8e",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x8f",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x90",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x91",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x92",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x93",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x94",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x95",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x96",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x97",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x98",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x99",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x9a",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x9b",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x9c",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x9d",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x9e",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0x9f",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xa0",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xa1",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xa2",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xa3",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xa4",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xa5",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xa6",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xa7",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xa8",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xa9",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xaa",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xab",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xac",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xad",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xae",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xaf",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xb0",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xb1",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xb2",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xb3",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xb4",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xb5",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xb6",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xb7",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xb8",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xb9",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xba",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xbb",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xbc",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xbd",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xbe",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "RES",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xbf",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xc0",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xc1",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xc2",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xc3",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xc4",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xc5",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xc6",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xc7",
+    "group": "x8/rsb",
+    "operand1": "0",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xc8",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xc9",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xca",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xcb",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xcc",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xcd",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xce",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xcf",
+    "group": "x8/rsb",
+    "operand1": "1",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xd0",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xd1",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xd2",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xd3",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xd4",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xd5",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xd6",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xd7",
+    "group": "x8/rsb",
+    "operand1": "2",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xd8",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xd9",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xda",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xdb",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xdc",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xdd",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xde",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xdf",
+    "group": "x8/rsb",
+    "operand1": "3",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xe0",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xe1",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xe2",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xe3",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xe4",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xe5",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xe6",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xe7",
+    "group": "x8/rsb",
+    "operand1": "4",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xe8",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xe9",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xea",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xeb",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xec",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xed",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xee",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xef",
+    "group": "x8/rsb",
+    "operand1": "5",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xf0",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xf1",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xf2",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xf3",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xf4",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xf5",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xf6",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xf7",
+    "group": "x8/rsb",
+    "operand1": "6",
+    "operand2": "A"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xf8",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "B"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xf9",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "C"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xfa",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "D"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xfb",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "E"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xfc",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "H"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xfd",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "L"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      16
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xfe",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "(HL)"
+  },
+  {
+    "mnemonic": "SET",
+    "length": 2,
+    "cycles": [
+      8
+    ],
+    "flags": [
+      "-",
+      "-",
+      "-",
+      "-"
+    ],
+    "addr": "0xff",
+    "group": "x8/rsb",
+    "operand1": "7",
+    "operand2": "A"
+  }
+]
