@@ -8,6 +8,10 @@ mod tests;
 
 use cpu::CPU;
 
+// Demo configuration constants
+const MAX_DEMO_STEPS: usize = 20;
+const MIN_STEPS_BEFORE_HALT: usize = 15;
+
 fn main() {
     println!("Game Boy Emulator - CPU Implementation Demo");
     println!("============================================\n");
@@ -74,7 +78,7 @@ fn main() {
         
         println!("0x{:04X}   {:2}      {:5}        {}", pc, cycles, total, instr_type);
         
-        if step > 20 || cycles == 4 && step > 15 {
+        if step > MAX_DEMO_STEPS || (cycles == 4 && step > MIN_STEPS_BEFORE_HALT) {
             // Stop after HALT or reasonable number of steps
             break;
         }

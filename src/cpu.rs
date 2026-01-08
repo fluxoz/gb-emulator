@@ -968,13 +968,14 @@ impl CPU {
             
             // ADD SP, r8
             0xE8 => {
-                let offset = self.fetch_byte() as i8 as i16 as u16;
-                let result = self.sp.wrapping_add(offset);
+                let offset = self.fetch_byte();
+                let signed_offset = offset as i8 as i16 as u16;
+                let result = self.sp.wrapping_add(signed_offset);
                 
                 self.f.zero = false;
                 self.f.negative = false;
-                self.f.half_carry = ((self.sp & 0x0F) + (offset & 0x0F)) > 0x0F;
-                self.f.carry = ((self.sp & 0xFF) + (offset & 0xFF)) > 0xFF;
+                self.f.half_carry = ((self.sp & 0x0F) + (signed_offset & 0x0F)) > 0x0F;
+                self.f.carry = ((self.sp & 0xFF) + (signed_offset & 0xFF)) > 0xFF;
                 
                 self.sp = result;
                 16
@@ -1065,13 +1066,14 @@ impl CPU {
             
             // LD HL, SP+r8
             0xF8 => {
-                let offset = self.fetch_byte() as i8 as i16 as u16;
-                let result = self.sp.wrapping_add(offset);
+                let offset = self.fetch_byte();
+                let signed_offset = offset as i8 as i16 as u16;
+                let result = self.sp.wrapping_add(signed_offset);
                 
                 self.f.zero = false;
                 self.f.negative = false;
-                self.f.half_carry = ((self.sp & 0x0F) + (offset & 0x0F)) > 0x0F;
-                self.f.carry = ((self.sp & 0xFF) + (offset & 0xFF)) > 0xFF;
+                self.f.half_carry = ((self.sp & 0x0F) + (signed_offset & 0x0F)) > 0x0F;
+                self.f.carry = ((self.sp & 0xFF) + (signed_offset & 0xFF)) > 0xFF;
                 
                 self.set_hl(result);
                 12
