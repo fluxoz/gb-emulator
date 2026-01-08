@@ -12,6 +12,8 @@
 // 0xFF80-0xFFFE: High RAM (HRAM)
 // 0xFFFF: Interrupt Enable Register
 
+use crate::input::Input;
+
 pub struct Memory {
     boot_rom: [u8; 256],
     rom: Vec<u8>,
@@ -22,6 +24,7 @@ pub struct Memory {
     io_registers: [u8; 0x80],
     boot_rom_enabled: bool,
     ie_register: u8,
+    pub input: Input,
 }
 
 impl Memory {
@@ -42,6 +45,7 @@ impl Memory {
             io_registers: [0; 0x80],
             boot_rom_enabled: true,
             ie_register: 0,
+            input: Input::new(),
         }
     }
 
@@ -85,6 +89,13 @@ impl Memory {
 
     fn read_io_register(&self, address: u16) -> u8 {
         let offset = (address - 0xFF00) as usize;
+        
+        // Handle joypad register specially
+        if address == 0xFF00 {
+            let joypad_reg = self.io_registers[0];
+            return self.input.get_joypad_state(joypad_reg);
+        }
+        
         if offset < self.io_registers.len() {
             self.io_registers[offset]
         } else {

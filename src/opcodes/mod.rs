@@ -1,4 +1,4 @@
-use crate::flags::{FlagOps, FlagsRegister};
+use crate::flags::FlagOps;
 use serde::Deserialize;
 use std::error::Error;
 
