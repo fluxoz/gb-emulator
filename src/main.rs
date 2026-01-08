@@ -4,6 +4,7 @@ mod flags;
 mod gpu;
 mod memory;
 mod opcodes;
+mod tests;
 
 use cpu::CPU;
 
