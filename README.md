@@ -122,7 +122,12 @@ If you encounter "Failed to create window" errors, the emulator will provide det
      - Debian/Ubuntu: `sudo apt install libwayland-client0 libxkbcommon0`
      - Fedora/RHEL: `sudo dnf install wayland libwayland-client libxkbcommon`
      - Arch: `sudo pacman -S wayland libxkbcommon`
-   - Verify Wayland socket exists: `ls -la $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY`
+   - Verify Wayland socket exists (check both variables are set first):
+     ```bash
+     echo "Checking: $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
+     ls -la "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
+     ```
+     If the file doesn't exist, your compositor may not be running properly
    - Check if compositor is running: `ps aux | grep -E '(gnome-shell|kwin|sway|weston)'`
    - Try restarting your Wayland session
 
