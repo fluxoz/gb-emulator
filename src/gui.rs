@@ -51,7 +51,10 @@ pub fn run_gui(mut cpu: CPU) {
         eprintln!("\nNote: This emulator requires Wayland support.");
         eprintln!("\nPossible Solutions:");
         
-        if wayland_display.is_none() && xdg_session_type.as_deref() != Some("wayland") {
+        // Check if we're clearly not on Wayland
+        let is_wayland = xdg_session_type.as_deref() == Some("wayland") || wayland_display.is_some();
+        
+        if !is_wayland {
             eprintln!("  1. You don't appear to be running Wayland. This emulator requires Wayland.");
             eprintln!("     - Check if you're in a Wayland session: echo $XDG_SESSION_TYPE");
             eprintln!("     - If using GNOME/KDE, log out and select 'Wayland' session at login screen");
