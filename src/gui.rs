@@ -36,14 +36,55 @@ pub fn run_gui(mut cpu: CPU) {
         },
     )
     .unwrap_or_else(|e| {
-        eprintln!("Error: Unable to create window: {}", e);
-        eprintln!("\nThis emulator requires a graphical display environment to run.");
-        eprintln!("If you're running in a headless environment (CI, SSH without X11, etc.),");
-        eprintln!("you'll need to set up a virtual display or configure display permissions.\n");
-        eprintln!("Common solutions:");
-        eprintln!("  - Linux with Xvfb: xvfb-run cargo run");
-        eprintln!("  - SSH with X11 forwarding: ssh -X user@host (DISPLAY set automatically)");
-        eprintln!("  - Check display permissions: xhost +local:");
+        eprintln!("Error: Unable to create window: {:?}", e);
+        
+        // Provide detailed troubleshooting based on the error and environment
+        let display_var = std::env::var("DISPLAY").ok();
+        let wayland_display = std::env::var("WAYLAND_DISPLAY").ok();
+        let xdg_session_type = std::env::var("XDG_SESSION_TYPE").ok();
+        
+        eprintln!("\nTroubleshooting Information:");
+        eprintln!("  DISPLAY: {}", display_var.as_deref().unwrap_or("(not set)"));
+        eprintln!("  WAYLAND_DISPLAY: {}", wayland_display.as_deref().unwrap_or("(not set)"));
+        eprintln!("  XDG_SESSION_TYPE: {}", xdg_session_type.as_deref().unwrap_or("(not set)"));
+        
+        eprintln!("\nPossible Solutions:");
+        
+        if xdg_session_type.as_deref() == Some("wayland") || wayland_display.is_some() {
+            eprintln!("  1. You're running on Wayland. The emulator needs X11 or XWayland support.");
+            eprintln!("     - Ensure XWayland is installed:");
+            eprintln!("       * Debian/Ubuntu: sudo apt install xwayland");
+            eprintln!("       * Fedora/RHEL: sudo dnf install xorg-x11-server-Xwayland");
+            eprintln!("       * Arch: sudo pacman -S xorg-server-xwayland");
+            eprintln!("     - Find your DISPLAY value: ps aux | grep X (look for :0, :1, etc.)");
+            eprintln!("     - Set DISPLAY: export DISPLAY=:0 (or the value found above)");
+            if display_var.is_none() {
+                eprintln!("     - Note: DISPLAY variable is not set, which is needed for X11/XWayland");
+            }
+        } else if display_var.is_none() && wayland_display.is_none() {
+            eprintln!("  1. No display environment detected. You may be running in a headless environment.");
+            eprintln!("     - For headless/CI: Use a virtual display with: xvfb-run cargo run");
+            eprintln!("     - For SSH: Enable X11 forwarding with: ssh -X user@host");
+            eprintln!("     - If you have a desktop environment, check your DISPLAY: run 'echo $DISPLAY'");
+            eprintln!("     - If DISPLAY is not set, try: export DISPLAY=:0 (or the value from your X server)");
+        } else if display_var.is_some() {
+            eprintln!("  1. DISPLAY is set but window creation failed. This could mean:");
+            eprintln!("     - X server is not running or not accessible");
+            eprintln!("     - Permission issues:");
+            eprintln!("       * Recommended (secure): xhost +SI:localuser:$(whoami)");
+            eprintln!("       * Alternative (less secure, all local users): xhost +local:");
+            eprintln!("     - X11 libraries missing. Install X11 development libraries:");
+            eprintln!("       * Debian/Ubuntu: sudo apt install libx11-dev libxrandr-dev");
+            eprintln!("       * Fedora/RHEL: sudo dnf install libX11-devel libXrandr-devel");
+            eprintln!("       * Arch: sudo pacman -S libx11 libxrandr");
+            eprintln!("     - Display server crashed or isn't responding");
+        }
+        
+        eprintln!("\n  General tips:");
+        eprintln!("    - Check if you can run other GUI applications (e.g., xterm, xeyes)");
+        eprintln!("    - Verify your display manager is running");
+        eprintln!("    - Review system logs for display/graphics errors");
+        
         std::process::exit(1);
     });
     
