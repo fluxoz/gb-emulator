@@ -6,7 +6,7 @@ A cycle-accurate Game Boy emulator implemented in Rust with full window-based di
 
 - ✅ **Complete CPU Implementation**: All 256 unprefixed and 256 CB-prefixed Sharp LR35902 instructions
 - ✅ **Cycle-Accurate Timing**: Precise cycle counting matching original Game Boy hardware (4.194304 MHz)
-- ✅ **Cross-Platform GUI**: Real-time graphics rendering with minifb supporting Wayland and X11 out of the box
+- ✅ **Cross-Platform GUI**: Real-time graphics rendering with minifb using native Wayland support
 - ✅ **Full Input Support**: Keyboard controls for all Game Boy buttons
 - ✅ **ROM Loading**: Load and run Game Boy ROM files from command line
 - ✅ **Memory Management Unit**: Complete memory map implementation with proper address decoding
@@ -61,7 +61,9 @@ The clock module (`src/clock.rs`) tracks CPU cycles with nanosecond precision:
 
 - Rust 2024 edition or later
 - Dependencies: `minifb` (optional, enabled by default), `serde`, and `serde_json` (automatically managed by Cargo)
-- For Linux: The GUI supports both Wayland and X11 out of the box. On Wayland systems, you may need `libwayland-dev` and `libwayland-cursor0` packages installed.
+- **For Linux**: The GUI requires **Wayland** support. You need:
+  - A Wayland compositor (GNOME Wayland, KDE Plasma Wayland, Sway, etc.)
+  - Runtime libraries: `libwayland-client0` and `libxkbcommon0` (usually pre-installed on Wayland systems)
 
 ### Build
 
@@ -96,7 +98,7 @@ Run with a Game Boy ROM file:
 cargo run -- path/to/game.gb
 ```
 
-The emulator will open a window displaying the Game Boy screen at 4x scale, running at 60 FPS. The GUI supports both Wayland and X11 on Linux out of the box.
+The emulator will open a window displaying the Game Boy screen at 4x scale, running at 60 FPS. The GUI uses native Wayland support on Linux.
 
 ### Troubleshooting Window Creation
 
@@ -107,28 +109,26 @@ If you encounter "Failed to create window" errors, the emulator will provide det
 
 **Common scenarios:**
 
-1. **Wayland Desktop Environment:**
-   - Ensure XWayland is installed:
-     - Debian/Ubuntu: `sudo apt install xwayland`
-     - Fedora/RHEL: `sudo dnf install xorg-x11-server-Xwayland`
-     - Arch: `sudo pacman -S xorg-server-xwayland`
-   - Find your X display: `ps aux | grep X` (look for display number like `:0` or `:1`)
-   - Verify DISPLAY is set: `echo $DISPLAY`
-   - If not set, try: `export DISPLAY=:0` (or use the display number from ps command)
+1. **Not Running Wayland:**
+   - This emulator requires a Wayland compositor
+   - Check your session type: `echo $XDG_SESSION_TYPE` (should show "wayland")
+   - If using GNOME or KDE, log out and select the Wayland session at login:
+     - GNOME: Select "GNOME" (not "GNOME on Xorg")
+     - KDE: Select "Plasma (Wayland)"
+   - Alternatively, use a Wayland compositor like Sway: `sway`
 
-2. **No Display Environment (Headless/CI):**
-   - Use virtual display: `xvfb-run cargo run`
-   - For SSH: Use X11 forwarding: `ssh -X user@host`
+2. **Wayland Detected but Connection Failed:**
+   - Install Wayland runtime libraries:
+     - Debian/Ubuntu: `sudo apt install libwayland-client0 libxkbcommon0`
+     - Fedora/RHEL: `sudo dnf install wayland libwayland-client libxkbcommon`
+     - Arch: `sudo pacman -S wayland libxkbcommon`
+   - Verify Wayland socket exists: `ls -la $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY`
+   - Check if compositor is running: `ps aux | grep -E '(gnome-shell|kwin|sway|weston)'`
+   - Try restarting your Wayland session
 
-3. **DISPLAY Set but Still Failing:**
-   - Check X server is running: Try running `xterm` or `xeyes`
-   - Fix permissions:
-     - Recommended (secure): `xhost +SI:localuser:$(whoami)`
-     - Alternative (less secure, all local users): `xhost +local:`
-   - Install X11 libraries:
-     - Debian/Ubuntu: `sudo apt install libx11-dev libxrandr-dev`
-     - Fedora/RHEL: `sudo dnf install libX11-devel libXrandr-devel`
-     - Arch: `sudo pacman -S libx11 libxrandr`
+3. **Headless/CI Environments:**
+   - Wayland requires a compositor; consider using `weston-headless` or similar
+   - Note: Unlike X11, Wayland doesn't support remote forwarding over SSH
 
 The error messages will automatically detect your environment and provide relevant solutions.
 
@@ -239,7 +239,7 @@ src/
 2. **Cycle Accuracy**: Every instruction tracks its exact cycle count to match original hardware
 3. **Real-Time Emulation**: Window updates at 60 FPS matching Game Boy refresh rate
 4. **Modular GUI**: GUI is feature-flagged for flexibility in different environments (native, WASM, headless)
-5. **Cross-Platform**: GUI supports Wayland and X11 on Linux out of the box
+5. **Native Wayland**: GUI uses native Wayland support for modern Linux desktop environments
 6. **Clean Architecture**: Separation of concerns between CPU, memory, GPU, clock, input, and GUI
 7. **User-Friendly**: Simple command-line interface for loading ROMs
 
