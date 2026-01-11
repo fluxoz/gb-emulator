@@ -89,7 +89,9 @@ cargo build --release --no-default-features
 
 ### Running the Emulator
 
-Run with the boot ROM (256 bytes) - TUI opens automatically:
+The emulator requires the boot ROM (`dmg_boot.bin`) for proper Game Boy initialization. It should be placed in the root directory of the project.
+
+Run with boot ROM only (no game):
 ```bash
 cargo run
 ```
@@ -98,6 +100,16 @@ Run with a Game Boy ROM file:
 ```bash
 cargo run -- path/to/game.gb
 ```
+
+**How it works:**
+1. The emulator first loads the boot ROM (`dmg_boot.bin`, 256 bytes) which contains the Nintendo logo animation and initialization code
+2. If a game ROM is provided, it loads into memory at address 0x0000+
+3. The CPU starts executing from the boot ROM at address 0x0000
+4. The boot ROM initializes the system and validates the game ROM
+5. When complete, the boot ROM disables itself (writes to register 0xFF50)
+6. The game ROM becomes visible and execution continues from address 0x0100
+
+**Note:** If the boot ROM is not found, the emulator will continue without it, but some games may not initialize properly.
 
 The emulator will render the Game Boy screen (160x144 pixels) directly in your terminal using Unicode half-block characters, running at 60 FPS.
 
