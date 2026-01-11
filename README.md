@@ -1,17 +1,17 @@
 # Game Boy Emulator (Rust Implementation)
 
-A cycle-accurate Game Boy emulator implemented in Rust with full window-based display and input support.
+A cycle-accurate Game Boy emulator implemented in Rust with terminal-based display and input support.
 
 ## Features
 
 - ✅ **Complete CPU Implementation**: All 256 unprefixed and 256 CB-prefixed Sharp LR35902 instructions
 - ✅ **Cycle-Accurate Timing**: Precise cycle counting matching original Game Boy hardware (4.194304 MHz)
-- ✅ **Cross-Platform GUI**: Real-time graphics rendering with minifb using native Wayland support
+- ✅ **Terminal-Based UI (TUI)**: Real-time graphics rendering directly in the terminal using ratatui
 - ✅ **Full Input Support**: Keyboard controls for all Game Boy buttons
 - ✅ **ROM Loading**: Load and run Game Boy ROM files from command line
 - ✅ **Memory Management Unit**: Complete memory map implementation with proper address decoding
 - ✅ **Hot Path Architecture**: CPU instruction stepping is the main execution path
-- ✅ **Feature Flags**: Optional GUI module for WASM and headless environments
+- ✅ **Feature Flags**: Optional TUI module for WASM and headless environments
 - ✅ **Comprehensive Testing**: 42 unit tests covering instruction execution and timing
 
 ## Architecture
@@ -60,35 +60,36 @@ The clock module (`src/clock.rs`) tracks CPU cycles with nanosecond precision:
 ### Prerequisites
 
 - Rust 2024 edition or later
-- Dependencies: `minifb` (optional, enabled by default), `serde`, and `serde_json` (automatically managed by Cargo)
-- **For Linux**: The GUI requires **Wayland** support. You need:
-  - A Wayland compositor (GNOME Wayland, KDE Plasma Wayland, Sway, etc.)
-  - Runtime libraries: `libwayland-client0` and `libxkbcommon0` (usually pre-installed on Wayland systems)
+- Dependencies: `ratatui`, `crossterm` (enabled by default), `serde`, and `serde_json` (automatically managed by Cargo)
+- A terminal emulator that supports:
+  - Unicode characters (for half-block rendering: ▀)
+  - 256 colors or true color support
+  - Common terminals like iTerm2, Alacritty, Windows Terminal, or GNOME Terminal work well
 
 ### Build
 
-Build with GUI (default):
+Build with TUI (default):
 ```bash
 cargo build --release
 ```
 
-Build without GUI (for WASM or headless environments):
+Build without TUI (for WASM or headless environments):
 ```bash
 cargo build --release --no-default-features
 ```
 
 Build with explicit features:
 ```bash
-# With GUI
-cargo build --release --features gui
+# With TUI
+cargo build --release --features tui
 
-# Without GUI (same as --no-default-features for now)
+# Without TUI (same as --no-default-features for now)
 cargo build --release --no-default-features
 ```
 
 ### Running the Emulator
 
-Run with the boot ROM (256 bytes) - GUI opens automatically:
+Run with the boot ROM (256 bytes) - TUI opens automatically:
 ```bash
 cargo run
 ```
@@ -98,65 +99,7 @@ Run with a Game Boy ROM file:
 cargo run -- path/to/game.gb
 ```
 
-The emulator will open a window displaying the Game Boy screen at 4x scale, running at 60 FPS. The GUI uses native Wayland support on Linux.
-
-### Troubleshooting Window Creation
-
-If you encounter "Failed to create window" errors, the emulator will provide detailed diagnostics including:
-- Your current display environment settings
-- Context-aware troubleshooting steps
-- Platform-specific solutions
-
-**Common scenarios:**
-
-1. **Not Running Wayland:**
-   - This emulator requires a Wayland compositor
-   - Check your session type: `echo $XDG_SESSION_TYPE` (should show "wayland")
-   - If using GNOME or KDE, log out and select the Wayland session at login:
-     - GNOME: Select "GNOME" (not "GNOME on Xorg")
-     - KDE: Select "Plasma (Wayland)"
-   - Alternatively, use a Wayland compositor like Sway: `sway`
-
-2. **Wayland Detected but Connection Failed:**
-   - Install Wayland runtime libraries:
-     - Debian/Ubuntu: `sudo apt install libwayland-client0 libxkbcommon0`
-     - Fedora/RHEL: `sudo dnf install wayland libwayland-client libxkbcommon`
-     - Arch: `sudo pacman -S wayland libxkbcommon`
-   - Verify Wayland socket exists (check both variables are set first):
-     ```bash
-     echo "Checking: $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
-     ls -la "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
-     ```
-     If the file doesn't exist, your compositor may not be running properly
-   - Check if compositor is running: `ps aux | grep -E '(gnome-shell|kwin|sway|weston)'`
-   - Try restarting your Wayland session
-
-3. **Headless/CI Environments:**
-   - Wayland requires a compositor; consider using `weston-headless` or similar
-   - Note: Unlike X11, Wayland doesn't support remote forwarding over SSH
-
-The error messages will automatically detect your environment and provide relevant solutions.
-
-### GUI and Feature Flags
-
-The GUI is implemented as an optional module that is enabled by default. This allows the emulator to be built for different environments:
-
-**Default behavior (GUI enabled):**
-```bash
-cargo run
-# or
-cargo run --features gui
-```
-
-**Headless mode (for WASM or other non-GUI environments):**
-```bash
-cargo run --no-default-features
-```
-
-The feature flag architecture makes it possible to:
-- Build for WASM without GUI dependencies
-- Create headless builds for automated testing
-- Reduce binary size when GUI is not needed
+The emulator will render the Game Boy screen (160x144 pixels) directly in your terminal using Unicode half-block characters, running at 60 FPS.
 
 ### Controls
 
@@ -165,7 +108,7 @@ The feature flag architecture makes it possible to:
 - **X / K** - B Button
 - **Enter / I** - Start
 - **Backspace / U** - Select
-- **ESC** - Quit
+- **Q / ESC** - Quit
 
 ### Run Tests
 
@@ -224,7 +167,7 @@ Each instruction executes with cycle-accurate timing:
 ```
 src/
 ├── main.rs         - Main entry point with feature flag support
-├── gui.rs          - GUI module (optional, enabled by default)
+├── tui.rs          - TUI module for terminal-based rendering (enabled by default)
 ├── cpu.rs          - CPU implementation (hot path)
 ├── memory.rs       - Memory management unit
 ├── clock.rs        - Clock and timing system
@@ -242,10 +185,10 @@ src/
 
 1. **CPU as Hot Path**: All instruction execution flows through the CPU module's `step()` method
 2. **Cycle Accuracy**: Every instruction tracks its exact cycle count to match original hardware
-3. **Real-Time Emulation**: Window updates at 60 FPS matching Game Boy refresh rate
-4. **Modular GUI**: GUI is feature-flagged for flexibility in different environments (native, WASM, headless)
-5. **Native Wayland**: GUI uses native Wayland support for modern Linux desktop environments
-6. **Clean Architecture**: Separation of concerns between CPU, memory, GPU, clock, input, and GUI
+3. **Real-Time Emulation**: Terminal updates at 60 FPS matching Game Boy refresh rate
+4. **Modular TUI**: TUI is feature-flagged for flexibility in different environments (native, WASM, headless)
+5. **Terminal Rendering**: Screen is rendered directly in the terminal buffer using Unicode half-block characters
+6. **Clean Architecture**: Separation of concerns between CPU, memory, GPU, clock, input, and TUI
 7. **User-Friendly**: Simple command-line interface for loading ROMs
 
 ## Future Enhancements
