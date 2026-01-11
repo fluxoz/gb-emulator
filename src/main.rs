@@ -2,8 +2,8 @@ mod clock;
 mod cpu;
 mod flags;
 mod gpu;
-#[cfg(feature = "gui")]
-mod gui;
+#[cfg(feature = "tui")]
+mod tui;
 mod input;
 mod memory;
 mod opcodes;
@@ -57,19 +57,22 @@ fn main() {
         std::process::exit(1);
     }
     
-    // Run with GUI if feature is enabled
-    #[cfg(feature = "gui")]
+    // Run with TUI if feature is enabled
+    #[cfg(feature = "tui")]
     {
-        gui::run_gui(cpu);
+        if let Err(e) = tui::run_tui(cpu) {
+            eprintln!("TUI Error: {}", e);
+            std::process::exit(1);
+        }
     }
     
-    // Run without GUI (for WASM or headless builds)
-    #[cfg(not(feature = "gui"))]
+    // Run without TUI (for WASM or headless builds)
+    #[cfg(not(feature = "tui"))]
     {
-        println!("\nGUI feature is disabled. Build completed successfully!");
-        println!("To enable GUI, build with: cargo build --features gui");
+        println!("\nTUI feature is disabled. Build completed successfully!");
+        println!("To enable TUI, build with: cargo build --features tui");
         println!("Or use default features: cargo build");
-        println!("\nThis headless build is suitable for WASM or other non-GUI environments.");
+        println!("\nThis headless build is suitable for WASM or other non-TUI environments.");
         println!("Total CPU cycles initialized: {}", cpu.get_ticks());
     }
 }
