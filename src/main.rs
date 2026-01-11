@@ -20,41 +20,63 @@ fn main() {
     
     // Parse command line arguments
     let args: Vec<String> = env::args().collect();
-    let rom_path = if args.len() > 1 {
-        args[1].clone()
-    } else {
-        // Default to boot ROM if no argument provided
-        "dmg_boot.bin".to_string()
-    };
     
     // Create a CPU instance
     let mut cpu = CPU::new();
     
-    // Load ROM file
-    if Path::new(&rom_path).exists() {
-        match fs::read(&rom_path) {
-            Ok(rom_data) => {
-                println!("Loading ROM from {}...", rom_path);
-                
-                // Check if this is a boot ROM (256 bytes) or a game ROM
-                if rom_data.len() == 256 {
-                    cpu.load_boot_rom(&rom_data);
-                    println!("Boot ROM loaded successfully ({} bytes)", rom_data.len());
+    // Always try to load the boot ROM first for proper initialization
+    let boot_rom_path = "dmg_boot.bin";
+    if Path::new(boot_rom_path).exists() {
+        match fs::read(boot_rom_path) {
+            Ok(boot_data) => {
+                if boot_data.len() == 256 {
+                    cpu.load_boot_rom(&boot_data);
+                    println!("Boot ROM loaded successfully ({} bytes)", boot_data.len());
                 } else {
-                    cpu.load_rom(rom_data.clone());
-                    println!("Game ROM loaded successfully ({} bytes)", rom_data.len());
+                    eprintln!("Warning: Boot ROM file is not 256 bytes, skipping boot ROM");
                 }
             }
             Err(e) => {
-                eprintln!("Error reading ROM file {}: {}", rom_path, e);
-                eprintln!("Usage: cargo run -- <path_to_rom.gb>");
-                std::process::exit(1);
+                eprintln!("Warning: Could not read boot ROM ({}): {}", boot_rom_path, e);
+                eprintln!("Continuing without boot ROM...");
             }
         }
     } else {
-        eprintln!("ROM file not found: {}", rom_path);
-        eprintln!("Usage: cargo run -- <path_to_rom.gb>");
-        std::process::exit(1);
+        eprintln!("Warning: Boot ROM not found at {}", boot_rom_path);
+        eprintln!("Continuing without boot ROM...");
+    }
+    
+    // Load game ROM if provided
+    if args.len() > 1 {
+        let rom_path = &args[1];
+        if Path::new(rom_path).exists() {
+            match fs::read(rom_path) {
+                Ok(rom_data) => {
+                    println!("Loading game ROM from {}...", rom_path);
+                    
+                    // Game ROMs should be at least 32KB
+                    if rom_data.len() >= 32768 {
+                        cpu.load_rom(rom_data.clone());
+                        println!("Game ROM loaded successfully ({} bytes)", rom_data.len());
+                    } else {
+                        eprintln!("Error: ROM file is too small ({} bytes). Game ROMs should be at least 32KB.", rom_data.len());
+                        std::process::exit(1);
+                    }
+                }
+                Err(e) => {
+                    eprintln!("Error reading ROM file {}: {}", rom_path, e);
+                    eprintln!("Usage: cargo run -- <path_to_rom.gb>");
+                    std::process::exit(1);
+                }
+            }
+        } else {
+            eprintln!("ROM file not found: {}", rom_path);
+            eprintln!("Usage: cargo run -- <path_to_rom.gb>");
+            std::process::exit(1);
+        }
+    } else {
+        println!("No game ROM specified. Running boot ROM only.");
+        println!("Usage: cargo run -- <path_to_rom.gb>");
     }
     
     // Run with TUI if feature is enabled
