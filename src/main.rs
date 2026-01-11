@@ -56,8 +56,9 @@ fn main() {
                     
                     // Game ROMs should be at least 32KB
                     if rom_data.len() >= 32768 {
-                        cpu.load_rom(rom_data.clone());
-                        println!("Game ROM loaded successfully ({} bytes)", rom_data.len());
+                        let rom_size = rom_data.len();
+                        cpu.load_rom(rom_data);
+                        println!("Game ROM loaded successfully ({} bytes)", rom_size);
                     } else {
                         eprintln!("Error: ROM file is too small ({} bytes). Game ROMs should be at least 32KB.", rom_data.len());
                         std::process::exit(1);
