@@ -9,9 +9,6 @@
 // Bit 1 - P11 (Left or B)
 // Bit 0 - P10 (Right or A)
 
-#[cfg(feature = "gui")]
-use minifb::Key;
-
 #[derive(Default)]
 pub struct Input {
     // Direction keys
@@ -31,17 +28,21 @@ impl Input {
         Self::default()
     }
 
-    #[cfg(feature = "gui")]
-    pub fn update_from_keys(&mut self, keys: &[Key]) {
-        self.right = keys.contains(&Key::Right) || keys.contains(&Key::D);
-        self.left = keys.contains(&Key::Left) || keys.contains(&Key::A);
-        self.up = keys.contains(&Key::Up) || keys.contains(&Key::W);
-        self.down = keys.contains(&Key::Down) || keys.contains(&Key::S);
+    #[cfg(feature = "tui")]
+    pub fn update_from_key_event(&mut self, key_event: crossterm::event::KeyEvent) {
+        let pressed = key_event.kind == crossterm::event::KeyEventKind::Press;
         
-        self.a = keys.contains(&Key::Z) || keys.contains(&Key::J);
-        self.b = keys.contains(&Key::X) || keys.contains(&Key::K);
-        self.select = keys.contains(&Key::Backspace) || keys.contains(&Key::U);
-        self.start = keys.contains(&Key::Enter) || keys.contains(&Key::I);
+        match key_event.code {
+            crossterm::event::KeyCode::Right | crossterm::event::KeyCode::Char('d') | crossterm::event::KeyCode::Char('D') => self.right = pressed,
+            crossterm::event::KeyCode::Left | crossterm::event::KeyCode::Char('a') | crossterm::event::KeyCode::Char('A') => self.left = pressed,
+            crossterm::event::KeyCode::Up | crossterm::event::KeyCode::Char('w') | crossterm::event::KeyCode::Char('W') => self.up = pressed,
+            crossterm::event::KeyCode::Down | crossterm::event::KeyCode::Char('s') | crossterm::event::KeyCode::Char('S') => self.down = pressed,
+            crossterm::event::KeyCode::Char('z') | crossterm::event::KeyCode::Char('Z') | crossterm::event::KeyCode::Char('j') | crossterm::event::KeyCode::Char('J') => self.a = pressed,
+            crossterm::event::KeyCode::Char('x') | crossterm::event::KeyCode::Char('X') | crossterm::event::KeyCode::Char('k') | crossterm::event::KeyCode::Char('K') => self.b = pressed,
+            crossterm::event::KeyCode::Backspace | crossterm::event::KeyCode::Char('u') | crossterm::event::KeyCode::Char('U') => self.select = pressed,
+            crossterm::event::KeyCode::Enter | crossterm::event::KeyCode::Char('i') | crossterm::event::KeyCode::Char('I') => self.start = pressed,
+            _ => {}
+        }
     }
 
     pub fn get_joypad_state(&self, joypad_register: u8) -> u8 {
