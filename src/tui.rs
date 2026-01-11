@@ -50,7 +50,7 @@ pub fn run_tui(mut cpu: CPU) -> io::Result<()> {
         // Execute cycles in small chunks to remain responsive to input
         while cycles_executed < CYCLES_PER_FRAME {
             let cycles = cpu.step();
-            gpu.step(cycles, cpu.get_memory());
+            gpu.step(cycles, cpu.get_memory_mut());
             cycles_executed = cpu.get_ticks() - start_cycles;
             
             // Check for input periodically (every ~1000 cycles)

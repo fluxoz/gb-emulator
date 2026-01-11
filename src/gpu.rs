@@ -40,7 +40,7 @@ impl GPU {
         }
     }
 
-    pub fn step(&mut self, cycles: u8, memory: &Memory) {
+    pub fn step(&mut self, cycles: u8, memory: &mut Memory) {
         self.cycles += cycles as u32;
         
         // Simple rendering: just update the framebuffer based on VRAM
@@ -48,6 +48,10 @@ impl GPU {
         if self.cycles >= 70224 { // Full frame
             self.cycles = 0;
             self.render_screen(memory);
+            
+            // Request VBlank interrupt (bit 0 of IF register at 0xFF0F)
+            let if_reg = memory.read(0xFF0F);
+            memory.write(0xFF0F, if_reg | 0x01);
         }
     }
 
