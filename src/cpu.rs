@@ -90,6 +90,13 @@ impl CPU {
 
     // Main execution loop - the hot path
     pub fn step(&mut self) -> u8 {
+        // Check for interrupts
+        let interrupt_cycles = self.handle_interrupts();
+        if interrupt_cycles > 0 {
+            self.clock.tick(interrupt_cycles);
+            return interrupt_cycles;
+        }
+
         if self.halted {
             self.clock.tick(4);
             return 4;
@@ -99,6 +106,55 @@ impl CPU {
         let cycles = self.execute(opcode);
         self.clock.tick(cycles);
         cycles
+    }
+
+    // Handle interrupts - returns cycles used (20 if interrupt handled, 0 otherwise)
+    fn handle_interrupts(&mut self) -> u8 {
+        if !self.ime && !self.halted {
+            return 0;
+        }
+
+        let ie = self.memory.read(0xFFFF); // Interrupt Enable
+        let if_reg = self.memory.read(0xFF0F); // Interrupt Flag
+        let triggered = ie & if_reg;
+
+        if triggered == 0 {
+            return 0;
+        }
+
+        // Wake from halt even if IME is disabled
+        self.halted = false;
+
+        if !self.ime {
+            return 0;
+        }
+
+        // Handle the highest priority interrupt
+        self.ime = false; // Disable interrupts
+        
+        let interrupt_bit = triggered.trailing_zeros();
+        if interrupt_bit >= 5 {
+            return 0;
+        }
+
+        // Clear the interrupt flag
+        let new_if = if_reg & !(1 << interrupt_bit);
+        self.memory.write(0xFF0F, new_if);
+
+        // Push PC onto stack
+        self.push_stack(self.pc);
+
+        // Jump to interrupt handler
+        self.pc = match interrupt_bit {
+            0 => 0x0040, // VBlank
+            1 => 0x0048, // LCD STAT
+            2 => 0x0050, // Timer
+            3 => 0x0058, // Serial
+            4 => 0x0060, // Joypad
+            _ => unreachable!(),
+        };
+
+        20 // Interrupt handling takes 20 cycles
     }
 
     fn fetch_byte(&mut self) -> u8 {
@@ -1501,5 +1557,9 @@ impl CPU {
     
     pub fn get_memory(&self) -> &Memory {
         &self.memory
+    }
+    
+    pub fn get_memory_mut(&mut self) -> &mut Memory {
+        &mut self.memory
     }
 }
