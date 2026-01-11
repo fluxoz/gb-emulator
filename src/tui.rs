@@ -38,39 +38,36 @@ pub fn run_tui(mut cpu: CPU) -> io::Result<()> {
     let mut last_frame_time = Instant::now();
     let target_frame_time = Duration::from_micros(TARGET_FRAME_TIME_MICROS);
 
-    println!("\nEmulator started!");
-    println!("Controls:");
-    println!("  Arrow Keys / WASD - D-Pad");
-    println!("  Z / J - A Button");
-    println!("  X / K - B Button");
-    println!("  Enter / I - Start");
-    println!("  Backspace / U - Select");
-    println!("  Q / ESC - Quit\n");
-
     let mut running = true;
     let start_time = Instant::now();
 
     // Main emulation loop
     while running {
-        // Handle input events (non-blocking)
-        if event::poll(Duration::from_millis(1))? {
-            if let Event::Key(key) = event::read()? {
-                if key.kind == KeyEventKind::Press {
-                    match key.code {
-                        KeyCode::Char('q') | KeyCode::Esc => running = false,
-                        _ => {}
-                    }
-                }
-                input.update_from_key_event(key);
-            }
-        }
-
         // Run CPU for one frame's worth of cycles
         let start_cycles = cpu.get_ticks();
+        let mut cycles_executed = 0;
         
-        while cpu.get_ticks() - start_cycles < CYCLES_PER_FRAME {
+        // Execute cycles in small chunks to remain responsive to input
+        while cycles_executed < CYCLES_PER_FRAME {
             let cycles = cpu.step();
             gpu.step(cycles, cpu.get_memory());
+            cycles_executed = cpu.get_ticks() - start_cycles;
+            
+            // Check for input periodically (every ~1000 cycles)
+            if cycles_executed % 1000 < 100 && event::poll(Duration::from_millis(0))? {
+                if let Event::Key(key) = event::read()? {
+                    if key.kind == KeyEventKind::Press {
+                        match key.code {
+                            KeyCode::Char('q') | KeyCode::Esc => {
+                                running = false;
+                                break;
+                            }
+                            _ => {}
+                        }
+                    }
+                    input.update_from_key_event(key);
+                }
+            }
         }
 
         // Render to terminal
@@ -89,7 +86,7 @@ pub fn run_tui(mut cpu: CPU) -> io::Result<()> {
             // Render status bar
             let elapsed = start_time.elapsed();
             let status = format!(
-                "GB Emulator | Cycles: {} | Time: {:.1}s | Q/ESC to quit",
+                "GB Emulator | Cycles: {} | Time: {:.1}s | Controls: Arrow/WASD=D-Pad Z/J=A X/K=B Enter/I=Start Bksp/U=Select Q/ESC=Quit",
                 cpu.get_ticks(),
                 elapsed.as_secs_f32()
             );
@@ -113,8 +110,9 @@ pub fn run_tui(mut cpu: CPU) -> io::Result<()> {
     execute!(terminal.backend_mut(), LeaveAlternateScreen)?;
     terminal.show_cursor()?;
 
-    println!("\nEmulator closed.");
-    println!("Total CPU cycles: {}", cpu.get_ticks());
+    // Now print messages after terminal is restored
+    eprintln!("\nEmulator closed.");
+    eprintln!("Total CPU cycles: {}", cpu.get_ticks());
 
     Ok(())
 }
