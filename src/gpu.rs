@@ -56,16 +56,29 @@ impl GPU {
     }
 
     fn render_screen(&mut self, memory: &Memory) {
-        // Clear screen
+        // Read LCD control register
+        let lcdc = memory.read(0xFF40);
+        
+        // Check if LCD is enabled (bit 7)
+        let lcd_enabled = (lcdc & 0x80) != 0;
+        
+        if !lcd_enabled {
+            // LCD is off - keep current framebuffer (don't clear)
+            // This preserves the last frame when LCD is temporarily disabled
+            return;
+        }
+        
+        // Clear screen to white before rendering
         for pixel in self.framebuffer.iter_mut() {
             *pixel = Color::White.to_u32();
         }
-
-        // Read LCD control register
-        let lcdc = memory.read(0xFF40);
+        
+        // Check if background is enabled (bit 0)
         let bg_enabled = (lcdc & 0x01) != 0;
         
         if !bg_enabled {
+            // Background disabled - screen stays white
+            // (sprites could still be visible but not implemented yet)
             return;
         }
 
