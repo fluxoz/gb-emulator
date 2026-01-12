@@ -27,6 +27,10 @@ pub struct Memory {
     io: [u8; 128],
     boot_rom_enabled: bool,
     ie_register: u8, // Interrupt Enable at 0xFFFF
+    
+    // Timer state
+    div_counter: u16,  // Internal counter for DIV register
+    timer_counter: u16, // Internal counter for TIMA register
 }
 
 impl Memory {
@@ -41,6 +45,8 @@ impl Memory {
             io: [0; 128],
             boot_rom_enabled: true,
             ie_register: 0,
+            div_counter: 0,
+            timer_counter: 0,
         }
     }
 
@@ -106,6 +112,12 @@ impl Memory {
                 if addr == 0xFF50 && value != 0 {
                     self.boot_rom_enabled = false;
                 }
+                // DIV register (0xFF04) - writing any value resets it to 0
+                if addr == 0xFF04 {
+                    self.io[(addr - 0xFF00) as usize] = 0;
+                    self.div_counter = 0;
+                    return;
+                }
                 self.io[(addr - 0xFF00) as usize] = value;
             }
             // HRAM
@@ -119,6 +131,51 @@ impl Memory {
         let low = self.read(addr) as u16;
         let high = self.read(addr.wrapping_add(1)) as u16;
         (high << 8) | low
+    }
+    
+    // Update timer registers - should be called every CPU cycle
+    pub fn update_timers(&mut self, cycles: u8) {
+        // Update DIV register (0xFF04) - increments at 16384 Hz (every 256 cycles)
+        self.div_counter = self.div_counter.wrapping_add(cycles as u16);
+        if self.div_counter >= 256 {
+            self.div_counter -= 256;
+            let div = self.io[0x04].wrapping_add(1);
+            self.io[0x04] = div;
+        }
+        
+        // Update TIMA register (0xFF05) if timer is enabled
+        let tac = self.io[0x07]; // TAC - Timer Control
+        let timer_enabled = (tac & 0x04) != 0;
+        
+        if timer_enabled {
+            // Determine timer frequency based on TAC bits 0-1
+            let threshold = match tac & 0x03 {
+                0 => 1024, // 4096 Hz
+                1 => 16,   // 262144 Hz
+                2 => 64,   // 65536 Hz
+                3 => 256,  // 16384 Hz
+                _ => unreachable!(),
+            };
+            
+            self.timer_counter = self.timer_counter.wrapping_add(cycles as u16);
+            
+            while self.timer_counter >= threshold {
+                self.timer_counter -= threshold;
+                
+                let tima = self.io[0x05];
+                if tima == 0xFF {
+                    // Timer overflow - reset to TMA and request interrupt
+                    let tma = self.io[0x06]; // TMA - Timer Modulo
+                    self.io[0x05] = tma;
+                    
+                    // Request timer interrupt (bit 2 of IF)
+                    let if_reg = self.io[0x0F];
+                    self.io[0x0F] = if_reg | 0x04;
+                } else {
+                    self.io[0x05] = tima.wrapping_add(1);
+                }
+            }
+        }
     }
 
     pub fn write_word(&mut self, addr: u16, value: u16) {
