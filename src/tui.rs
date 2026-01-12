@@ -53,8 +53,9 @@ pub fn run_tui(mut cpu: CPU) -> io::Result<()> {
             gpu.step(cycles, cpu.get_memory_mut());
             cycles_executed = cpu.get_ticks() - start_cycles;
             
-            // Check for input periodically (every ~1000 cycles)
-            if cycles_executed % 1000 < 100 && event::poll(Duration::from_millis(0))? {
+            // Check for input less frequently (every ~10000 cycles instead of 1000)
+            // This reduces overhead significantly
+            if cycles_executed % 10000 < 100 && event::poll(Duration::from_millis(0))? {
                 if let Event::Key(key) = event::read()? {
                     if key.kind == KeyEventKind::Press {
                         match key.code {
@@ -67,6 +68,12 @@ pub fn run_tui(mut cpu: CPU) -> io::Result<()> {
                     }
                     input.update_from_key_event(key);
                 }
+            }
+            
+            // Yield CPU occasionally to prevent busy-wait hogging
+            // This significantly reduces CPU usage
+            if cycles_executed % 5000 == 0 {
+                std::thread::yield_now();
             }
         }
 
