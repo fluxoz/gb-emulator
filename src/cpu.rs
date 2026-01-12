@@ -93,17 +93,20 @@ impl CPU {
         // Check for interrupts
         let interrupt_cycles = self.handle_interrupts();
         if interrupt_cycles > 0 {
+            self.memory.update_timers(interrupt_cycles);
             self.clock.tick(interrupt_cycles);
             return interrupt_cycles;
         }
 
         if self.halted {
+            self.memory.update_timers(4);
             self.clock.tick(4);
             return 4;
         }
 
         let opcode = self.fetch_byte();
         let cycles = self.execute(opcode);
+        self.memory.update_timers(cycles);
         self.clock.tick(cycles);
         cycles
     }
