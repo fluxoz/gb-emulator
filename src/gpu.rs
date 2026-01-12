@@ -40,7 +40,7 @@ impl GPU {
         }
     }
 
-    pub fn step(&mut self, cycles: u8, memory: &Memory) {
+    pub fn step(&mut self, cycles: u8, memory: &mut Memory) {
         self.cycles += cycles as u32;
         
         // Simple rendering: just update the framebuffer based on VRAM
@@ -48,20 +48,37 @@ impl GPU {
         if self.cycles >= 70224 { // Full frame
             self.cycles = 0;
             self.render_screen(memory);
+            
+            // Request VBlank interrupt (bit 0 of IF register at 0xFF0F)
+            let if_reg = memory.read(0xFF0F);
+            memory.write(0xFF0F, if_reg | 0x01);
         }
     }
 
     fn render_screen(&mut self, memory: &Memory) {
-        // Clear screen
+        // Read LCD control register
+        let lcdc = memory.read(0xFF40);
+        
+        // Check if LCD is enabled (bit 7)
+        let lcd_enabled = (lcdc & 0x80) != 0;
+        
+        if !lcd_enabled {
+            // LCD is off - keep current framebuffer (don't clear)
+            // This preserves the last frame when LCD is temporarily disabled
+            return;
+        }
+        
+        // Clear screen to white before rendering
         for pixel in self.framebuffer.iter_mut() {
             *pixel = Color::White.to_u32();
         }
-
-        // Read LCD control register
-        let lcdc = memory.read(0xFF40);
+        
+        // Check if background is enabled (bit 0)
         let bg_enabled = (lcdc & 0x01) != 0;
         
         if !bg_enabled {
+            // Background disabled - screen stays white
+            // (sprites could still be visible but not implemented yet)
             return;
         }
 
@@ -109,6 +126,89 @@ impl GPU {
 
                 let color = Color::from_id(color_id);
                 self.framebuffer[y * SCREEN_WIDTH + x] = color.to_u32();
+            }
+        }
+        
+        // Render sprites (OAM) if enabled
+        let sprites_enabled = (lcdc & 0x02) != 0;
+        if sprites_enabled {
+            self.render_sprites(memory, lcdc);
+        }
+    }
+    
+    fn render_sprites(&mut self, memory: &Memory, lcdc: u8) {
+        // Sprite size: 8x8 or 8x16
+        let sprite_height = if (lcdc & 0x04) != 0 { 16 } else { 8 };
+        
+        // OAM is at 0xFE00-0xFE9F (160 bytes = 40 sprites x 4 bytes each)
+        // Each sprite: Y pos, X pos, Tile number, Attributes
+        for sprite_index in 0..40 {
+            let oam_addr = 0xFE00 + (sprite_index * 4);
+            
+            let y_pos = memory.read(oam_addr).wrapping_sub(16); // Y position minus 16
+            let x_pos = memory.read(oam_addr + 1).wrapping_sub(8); // X position minus 8
+            let tile_num = memory.read(oam_addr + 2);
+            let attributes = memory.read(oam_addr + 3);
+            
+            // Skip if sprite is off-screen
+            if y_pos >= 144 && y_pos < 240 {
+                continue;
+            }
+            
+            // Attributes: bit 7 = priority, bit 6 = Y flip, bit 5 = X flip, bit 4 = palette
+            let _priority = (attributes & 0x80) != 0; // 0 = above bg, 1 = behind bg colors 1-3
+            let y_flip = (attributes & 0x40) != 0;
+            let x_flip = (attributes & 0x20) != 0;
+            let _palette = (attributes & 0x10) != 0; // OBP0 or OBP1
+            
+            // Render sprite tile
+            for tile_y in 0..sprite_height {
+                let y = y_pos.wrapping_add(tile_y);
+                if y >= 144 {
+                    continue;
+                }
+                
+                // Calculate which tile line to read (handle Y flip)
+                let line = if y_flip {
+                    sprite_height - 1 - tile_y
+                } else {
+                    tile_y
+                };
+                
+                // Tile data is always at 0x8000 for sprites
+                let tile_addr = 0x8000u16 + (tile_num as u16) * 16 + (line as u16 * 2);
+                let byte1 = memory.read(tile_addr);
+                let byte2 = memory.read(tile_addr + 1);
+                
+                // Render the 8 pixels of this sprite line
+                for tile_x in 0..8 {
+                    let x = x_pos.wrapping_add(tile_x);
+                    if x >= 160 {
+                        continue;
+                    }
+                    
+                    // Calculate which bit to read (handle X flip)
+                    let bit_pos = if x_flip {
+                        tile_x
+                    } else {
+                        7 - tile_x
+                    };
+                    
+                    let color_low = (byte1 >> bit_pos) & 1;
+                    let color_high = (byte2 >> bit_pos) & 1;
+                    let color_id = (color_high << 1) | color_low;
+                    
+                    // Color 0 is transparent for sprites
+                    if color_id == 0 {
+                        continue;
+                    }
+                    
+                    // TODO: Apply sprite palette (OBP0/OBP1) instead of BG palette
+                    // For now, use same color mapping
+                    let color = Color::from_id(color_id);
+                    let pixel_index = (y as usize) * SCREEN_WIDTH + (x as usize);
+                    self.framebuffer[pixel_index] = color.to_u32();
+                }
             }
         }
     }
